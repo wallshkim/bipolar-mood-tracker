@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 class MedicationList extends Component {
 
     componentDidMount() {
-        // Dispatched action to fetchMedications saga
-        this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
+        let userId = this.props.user.id
+        console.log('In MedicationList, userId is: ', userId);
+        // Fetch medications for this user
+        this.props.dispatch({ type: 'FETCH_MEDICATIONS', payload: userId })
     }
 
     render() {
