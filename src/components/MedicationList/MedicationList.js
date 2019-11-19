@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import MedicationItem from '../MedicationItem/MedicationItem';
 
 class MedicationList extends Component {
 
@@ -14,7 +15,11 @@ class MedicationList extends Component {
         return (
             <div>
                 <ul>
-
+                    {this.props.medicationsReducer.map((medication) => {
+                        return (
+                            <MedicationItem key={medication.id} medication={medication} />
+                        )
+                    })}
 
                 </ul>
                 <pre>{JSON.stringify(this.props, null, 2)}</pre>
