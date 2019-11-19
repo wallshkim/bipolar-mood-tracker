@@ -5,8 +5,9 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchMedications(action) {
     try {
         console.log('in fetchMedications, action.payload is: ', action.payload);
-        const response = yield axios.get('/api/medications', action.payload);
-        yield put({ type: 'SET_MEDICATIONS', payload: response.data });
+        const response = yield axios.get(`/api/medications/${action.payload}`);
+        yield put({ type: 'SET_MEDICATIONS', payload: response.data[0] });
+        console.log('in fetchMedications, response.data[0] is: ', response.data[0]);
     } catch (error) {
         console.log('Medication get request failed', error);
     }
