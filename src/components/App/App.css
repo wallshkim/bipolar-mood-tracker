@@ -8,10 +8,19 @@ body {
     margin: 50px;
 }
 
-form {
+.LoginPage-Form {
     background-color: #dbd5d5;
-    width: 30%;
+    width: 50%;
     height: 250px;
+    margin: 10px auto;
+    padding: 25px;
+    border-radius: 2px;
+}
+
+.RegisterPage-Form {
+    background-color: #dbd5d5;
+    width: 50%;
+    height: 400px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;

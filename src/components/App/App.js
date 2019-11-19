@@ -17,6 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import Settings from '../Settings/Settings';
+import MoodLog from '../MoodLog/MoodLog';
 
 
 import './App.css';
@@ -60,9 +61,14 @@ class App extends Component {
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the settings page instead. */}
             <ProtectedRoute
-              exact
               path="/settings"
               component={Settings}
+            />
+            {/* This works the same as the other protected route, except that if the user is logged in,
+            they will see the MoodLog page instead. */}
+            <ProtectedRoute
+              path="/moodLog"
+              component={MoodLog}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

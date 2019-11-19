@@ -6,7 +6,13 @@ import MedicationList from '../MedicationList/MedicationList';
 class Settings extends Component {
 
     addMedication = () => {
-        // route to AddMedication com
+        console.log('add medication clicked!');
+        // route to AddMedication Component
+    }
+
+    addContact = () => {
+        console.log('add contact clicked!');
+        // route to AddMedication Component
     }
 
     render() {
