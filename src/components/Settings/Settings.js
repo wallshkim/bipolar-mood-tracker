@@ -5,6 +5,10 @@ import MedicationList from '../MedicationList/MedicationList';
 
 class Settings extends Component {
 
+    addMedication = () => {
+        // route to AddMedication com
+    }
+
     render() {
         return (
             <div>
@@ -12,6 +16,8 @@ class Settings extends Component {
                 <div className="Settings-titleBtnContainer">
                     <h2>Medications</h2>
                     <button onClick={this.addMedication}>+</button>
+                </div>
+                <div className="MedicationList-ListContainer">
                     <MedicationList />
                 </div>
                 <div className="Settings-titleBtnContainer">

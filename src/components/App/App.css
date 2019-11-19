@@ -54,3 +54,8 @@ input {
     justify-content: flex-start;
     align-items: baseline;
 }
+
+
+.MedicationList-ListContainer {
+    display: flex;
+}
