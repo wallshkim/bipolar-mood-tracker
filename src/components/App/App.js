@@ -16,6 +16,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import Settings from '../Settings/Settings';
+
 
 import './App.css';
 
@@ -54,6 +56,13 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+            {/* This works the same as the other protected route, except that if the user is logged in,
+            they will see the settings page instead. */}
+            <ProtectedRoute
+              exact
+              path="/settings"
+              component={Settings}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
