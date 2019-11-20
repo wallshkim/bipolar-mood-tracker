@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MedicationList from '../MedicationList/MedicationList';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
+import Button from '@material-ui/core/Button';
+
 
 
 class Settings extends Component {
@@ -21,15 +25,15 @@ class Settings extends Component {
                 <h1>Settings</h1>
                 <div className="Settings-titleBtnContainer">
                     <h2>Medications</h2>
-                    <button onClick={this.addMedication}>+</button>
+                    <Button color="primary" onClick={this.addMedication}>+</Button>
                 </div>
                 <div className="MedicationList-ListContainer">
                     <MedicationList />
                 </div>
-                <div className="Settings-titleBtnContainer">
+                {/* <div className="Settings-titleBtnContainer">
                     <h2>Wellness Team</h2>
                     <button onClick={this.addContact}>+</button>
-                </div>
+                </div> */}
             </div>
         );
     }

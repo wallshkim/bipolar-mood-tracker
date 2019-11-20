@@ -73,3 +73,7 @@ input {
     display: flex;
     
 }
+
+.moodContainer {
+    margin: 10px;
+}

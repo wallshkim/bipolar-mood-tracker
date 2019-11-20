@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
 
 class MedicationItem extends Component {
 
@@ -22,8 +23,8 @@ class MedicationItem extends Component {
             // Displays ListItem for each medication in medicationsReducer
             <ListItem>
                 <ListItemText primary={medication.name} />
-                <button onClick={this.handleEdit}>Edit</button>
-                <button onClick={this.handleDelete}>Delete</button>
+                <Button color="primary" onClick={this.handleEdit}>Edit</Button>
+                <Button color="primary" onClick={this.handleDelete}>Delete</Button>
             </ListItem>
         )
     }
