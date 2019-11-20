@@ -68,3 +68,8 @@ input {
 .MedicationList-ListContainer {
     display: flex;
 }
+
+.MoodLog-InputContainer {
+    display: flex;
+    
+}
