@@ -8,6 +8,7 @@ router.post('/', (req, res) => {
     console.log('in /moods router.post req.user is: ', req.user);
     console.log('in /moods router.post req.body is: ', req.body);
 
+    
     const queryText = `INSERT INTO "moods_per_day" ("user_id", "date", "elevated", "depressed", "sleep", "irritability", "anxiety", "psychotic_symptoms", "therapy", "notes") 
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`;
     const queryValues = [req.user.id, req.body.date, req.body.elevated, req.body.depressed, req.body.sleep, req.body.irritability, req.body.anxiety, req.body.psychoticSymptoms, req.body.therapy, req.body.notes]

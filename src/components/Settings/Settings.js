@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MedicationList from '../MedicationList/MedicationList';
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
+// import AddIcon from '@material-ui/icons/Add';
+// import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
 
 

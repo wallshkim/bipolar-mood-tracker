@@ -10,10 +10,11 @@ class MedicationList extends Component {
     }
 
     fetchMedications = () => {
-        let userId = this.props.user.id
-        console.log('In MedicationList, userId is: ', userId);
+        // let userId = this.props.user.id
+        // console.log('In MedicationList, userId is: ', userId);
         // Fetch medications for this user
-        this.props.dispatch({ type: 'FETCH_MEDICATIONS', payload: userId })
+        // this.props.dispatch({ type: 'FETCH_MEDICATIONS', payload: userId })
+        this.props.dispatch({ type: 'FETCH_MEDICATIONS'})
     }
 
     render() {

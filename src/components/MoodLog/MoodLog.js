@@ -3,20 +3,26 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+// import Select from '@material-ui/core/Select';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-
-// let weekday = moment().format('dddd');
-// console.log(weekday);
-// let todaysDate = moment().format('MMMM Do, YYYY');
-// console.log(todaysDate);
 // let yesterday = moment().add(-1, 'days')
 // console.log(yesterday);
 
+// Get current date
 let rawCurrentDate = moment();
 
 class MoodLog extends Component {
 
-    
+    componentDidMount() {
+        this.fetchMedications();
+        // this.addMedicationsPerDay();
+    }
 
     state = {
         date: rawCurrentDate.format('L'),
@@ -30,23 +36,59 @@ class MoodLog extends Component {
         notes: '',
     }
 
-    handleSubmit = () => {
+    // Get user's medications in order to display them in form below
+    fetchMedications = () => {
+        this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
+    }
 
+    // // Add medication info to database w/ default false
+    // addMedicationsPerDay = () => {
+    //     // loop through to get medication
+    //     this.props.medicationsReducer.map(medication => {
+    //         this.props.dispatch({ type: 'ADD_MEDICATION_PER_DAY', payload: medication})
+    //     })
+    // }
+
+    /* Requires certain inputs & dispatches action to add entries to moods_per_day in database */
+    handleSubmit = () => {
         console.log('in handleSubmit this.state is: ', this.state);
-        // Require all fields except for Notes
+        // Require fields
         if (this.state.sleep && this.state.elevated && this.state.depressed && this.state.irritability && this.state.anxiety && this.state.psychoticSymptoms && this.state.therapy) {
             // Call addMoods saga
             this.props.dispatch({
                 type: 'ADD_MOODS',
                 payload: this.state
             })
+            // Clear inputs
+            // this.setState({
+            //     date: rawCurrentDate.format('L'),
+            //     elevated: '',
+            //     depressed: '',
+            //     sleep: '',
+            //     irritability: '',
+            //     anxiety: '',
+            //     psychoticSymptoms: '',
+            //     therapy: '',
+            //     notes: '',
+            // })
         }
-        // Alert user they need to enter required fields
         else {
+            // Alert user they need to enter required fields
             alert('Please enter all fields to move forward');
         }
     }
 
+    handleMedChange = (id, event) => {
+        console.log('taken changed');
+        console.log('event is: ', event.target.value);
+        
+        this.props.dispatch({
+            type: 'SET_MEDICATIONS_TAKEN',
+            payload: {medId: id, taken: event.target.value}
+        })
+    }
+
+    // Update state when inputs are changed
     handleChangeFor = (propertyName, event) => {
         this.setState({
             ...this.state,
@@ -55,7 +97,6 @@ class MoodLog extends Component {
     }
 
     render() {
-
         return (
             <div className="moodContainer">
                 <h3>{rawCurrentDate.format('MMMM Do, YYYY')}</h3>
@@ -163,24 +204,25 @@ class MoodLog extends Component {
                     />
                 </div>
 
-                <Button variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
+                {this.props.medicationsReducer.map((medication) => {
+                    return (
+                        <div key={medication.id}>
+                            <p>{medication.name} {medication.dosage}{medication.units} ({medication.time})</p>
+                            <FormControl component="fieldset">
+                            <RadioGroup aria-label="taken" name="taken" onChange={(event) => this.handleMedChange(medication.id, event)}>
+                                <FormControlLabel name="taken" value="true" control={<Radio />} label="Yes" />
+                                <FormControlLabel name="taken" value="false" control={<Radio />} label="No" />
+                            </RadioGroup>
+                            </FormControl>
+                        </div>
+                    )
+                })}
 
+                <Button variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
 
                 <pre>{JSON.stringify(this.props, null, 2)}</pre>
                 <pre>{JSON.stringify(this.state, null, 2)}</pre>
             </div>
-
-            // {/* {this.props.moodReducer.medication_array.map((medication) => {
-            //     return (
-            //         <div className="MoodLog-InputContainer">
-            //             <p>{medication}: </p>
-            //             <select>
-            //                 <option value="yes">Yes</option>
-            //                 <option value="no">No</option>
-            //             </select>
-            //         </div>
-            //     )
-            // })} */}
         );
     }
 }
