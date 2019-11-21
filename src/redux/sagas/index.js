@@ -3,8 +3,7 @@ import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import medicationsSaga from './medicationsSaga';
-import moodsSaga from './moodsSaga';
-import medicationsPerDaySaga from './medicationsPerDaySaga';
+import dailyLogSaga from './dailyLogSaga';
 
 
 // rootSaga is the primary saga.
@@ -20,7 +19,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     medicationsSaga(),
-    moodsSaga(),
-    medicationsPerDaySaga()
+    dailyLogSaga(),
   ]);
 }

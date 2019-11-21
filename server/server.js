@@ -11,8 +11,8 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const medicationsRouter = require('./routes/medications.router');
-const medicationsPerDayRouter = require('./routes/medicationsPerDay.router.js');
-const moodsRouter = require('./routes/moods.router');
+const dailyLogRouter = require('./routes/dailyLog.router');
+
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -28,8 +28,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/medications', medicationsRouter);
-app.use('/api/moods', moodsRouter);
-app.use('/api/medicationsPerDay', medicationsPerDayRouter);
+app.use('/api/dailyLog', dailyLogRouter);
 
 // Serve static files
 app.use(express.static('build'));

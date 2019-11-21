@@ -54,10 +54,11 @@ class MoodLog extends Component {
         console.log('in handleSubmit this.state is: ', this.state);
         // Require fields
         if (this.state.sleep && this.state.elevated && this.state.depressed && this.state.irritability && this.state.anxiety && this.state.psychoticSymptoms && this.state.therapy) {
+            
             // Call addMoods saga
             this.props.dispatch({
-                type: 'ADD_MOODS',
-                payload: this.state
+                type: 'ADD_DAILY_LOG',
+                payload: {moods: this.state, medications: this.props.medicationsReducer}
             })
             // Clear inputs
             // this.setState({
