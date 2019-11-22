@@ -17,4 +17,26 @@ router.get('/', (req, res) => {
         });
 });
 
+
+router.post('/', (req, res) => {
+    const newMedication = req.body;
+    console.log('in medication router POST req.body is: ', newMedication);
+    const queryText = `INSERT INTO "medications" ("user_id", "name", "dosage", "units", "frequency", "time") 
+    VALUES ($1, $2, $3, $4, $5 , $6);`;
+    const queryValues = [
+        req.user.id,
+        newMedication.medicationName,
+        newMedication.dosage,
+        newMedication.units,
+        newMedication.frequency,
+        newMedication.time,
+    ];
+    pool.query(queryText, queryValues)
+        .then(() => { res.sendStatus(201); })
+        .catch((err) => {
+            console.log('Error completing INSERT medication query', err);
+            res.sendStatus(500);
+        });
+});
+
 module.exports = router;

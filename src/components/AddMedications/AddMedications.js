@@ -7,20 +7,33 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { withRouter } from 'react-router-dom';
+
 
 class AddMedications extends Component {
 
     state = {
         medicationName: '',
-        dosage: '',
+        dosage: 0,
         units: 'mg',
         frequency: '',
         time: ''
     }
 
-    handleAdd = () => {
+    addNewMedication = () => {
         console.log('add button clicked!');
         //dispatch to addMed saga
+        this.props.dispatch({ type: 'ADD_NEW_MEDICATION', payload: this.state });
+        // reset inputs
+        this.setState({
+            medicationName: '',
+            dosage: 0,
+            units: 'mg',
+            frequency: '',
+            time: ''
+        })
+        // route back to settings page
+        this.props.history.push(`/settings`)
     }
 
     handleChangeFor = (propertyName, event) => {
@@ -113,7 +126,7 @@ class AddMedications extends Component {
                     </FormControl>
                 </div>
 
-                <Button variant="contained" color="primary" onClick={this.handleAdd}>Add</Button>
+                <Button variant="contained" color="primary" onClick={this.addNewMedication}>Add</Button>
 
                 <pre>{JSON.stringify(this.props, null, 2)}</pre>
                 <pre>{JSON.stringify(this.state, null, 2)}</pre>
@@ -126,4 +139,4 @@ const mapReduxStateToProps = (reduxState) => {
     return reduxState
 }
 
-export default connect(mapReduxStateToProps)(AddMedications);
+export default withRouter(connect(mapReduxStateToProps)(AddMedications));

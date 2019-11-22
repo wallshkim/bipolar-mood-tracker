@@ -13,19 +13,18 @@ function* fetchMedications(action) {
     }
 }
 
-function* addMedications(action) {
+function* addNewMedication(action) {
     try {
-        // console.log('in fetchMedications, action.payload is: ', action.payload);
-        const response = yield axios.get(`/api/medications`);
-        yield put({ type: 'SET_MEDICATIONS', payload: response.data });
-        console.log('in fetchMedications, response.data is: ', response.data);
+        yield axios.post('/api/medications', action.payload);
+        yield put({ type: 'FETCH_MEDICATIONS' });
     } catch (error) {
-        console.log('Medication get request failed', error);
+        console.log('Error in addNewMedication: ', error);
     }
 }
 
 function* medicationsSaga() {
     yield takeLatest('FETCH_MEDICATIONS', fetchMedications);
+    yield takeLatest('ADD_NEW_MEDICATION', addNewMedication);
 }
 
 export default medicationsSaga;
