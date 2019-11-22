@@ -4,7 +4,7 @@ import MedicationList from '../MedicationList/MedicationList';
 // import AddIcon from '@material-ui/icons/Add';
 // import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
-
+import { withRouter } from 'react-router-dom';
 
 
 class Settings extends Component {
@@ -12,6 +12,7 @@ class Settings extends Component {
     addMedication = () => {
         console.log('add medication clicked!');
         // route to AddMedication Component
+        this.props.history.push(`/medications/add`)
     }
 
     addContact = () => {
@@ -43,4 +44,4 @@ const mapReduxStateToProps = (reduxState) => {
     return reduxState
 }
 
-export default connect(mapReduxStateToProps)(Settings);
+export default withRouter(connect(mapReduxStateToProps)(Settings));

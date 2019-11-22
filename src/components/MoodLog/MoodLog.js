@@ -11,21 +11,18 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-// let yesterday = moment().add(-1, 'days')
-// console.log(yesterday);
-
-// Get current date
-let rawCurrentDate = moment();
 
 class MoodLog extends Component {
 
+    // Current moment
+    rawDate = moment().subtract( 0/*this.props.daysBackReducer*/, 'days');
+
     componentDidMount() {
         this.fetchMedications();
-        // this.addMedicationsPerDay();
     }
 
     state = {
-        date: rawCurrentDate.format('L'),
+        date: this.rawDate.format('L'),
         elevated: '',
         depressed: '',
         sleep: '',
@@ -41,37 +38,16 @@ class MoodLog extends Component {
         this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
     }
 
-    // // Add medication info to database w/ default false
-    // addMedicationsPerDay = () => {
-    //     // loop through to get medication
-    //     this.props.medicationsReducer.map(medication => {
-    //         this.props.dispatch({ type: 'ADD_MEDICATION_PER_DAY', payload: medication})
-    //     })
-    // }
-
     /* Requires certain inputs & dispatches action to add entries to moods_per_day in database */
     handleSubmit = () => {
         console.log('in handleSubmit this.state is: ', this.state);
         // Require fields
         if (this.state.sleep && this.state.elevated && this.state.depressed && this.state.irritability && this.state.anxiety && this.state.psychoticSymptoms && this.state.therapy) {
-            
             // Call addMoods saga
             this.props.dispatch({
                 type: 'ADD_DAILY_LOG',
                 payload: {moods: this.state, medications: this.props.medicationsReducer}
             })
-            // Clear inputs
-            // this.setState({
-            //     date: rawCurrentDate.format('L'),
-            //     elevated: '',
-            //     depressed: '',
-            //     sleep: '',
-            //     irritability: '',
-            //     anxiety: '',
-            //     psychoticSymptoms: '',
-            //     therapy: '',
-            //     notes: '',
-            // })
         }
         else {
             // Alert user they need to enter required fields
@@ -100,7 +76,7 @@ class MoodLog extends Component {
     render() {
         return (
             <div className="moodContainer">
-                <h3>{rawCurrentDate.format('MMMM Do, YYYY')}</h3>
+                <h3>{this.rawDate.format('MMMM Do, YYYY')}</h3>
 
                 <div>
                     <p>Hours Slept Last Night: </p>

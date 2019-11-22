@@ -18,6 +18,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import Settings from '../Settings/Settings';
 import MoodLog from '../MoodLog/MoodLog';
+import AddMedications from '../AddMedications/AddMedications';
 
 
 import './App.css';
@@ -69,6 +70,11 @@ class App extends Component {
             <ProtectedRoute
               path="/moodLog"
               component={MoodLog}
+            />
+
+            <ProtectedRoute
+              path="/medications/add"
+              component={AddMedications}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

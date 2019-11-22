@@ -13,6 +13,17 @@ function* fetchMedications(action) {
     }
 }
 
+function* addMedications(action) {
+    try {
+        // console.log('in fetchMedications, action.payload is: ', action.payload);
+        const response = yield axios.get(`/api/medications`);
+        yield put({ type: 'SET_MEDICATIONS', payload: response.data });
+        console.log('in fetchMedications, response.data is: ', response.data);
+    } catch (error) {
+        console.log('Medication get request failed', error);
+    }
+}
+
 function* medicationsSaga() {
     yield takeLatest('FETCH_MEDICATIONS', fetchMedications);
 }

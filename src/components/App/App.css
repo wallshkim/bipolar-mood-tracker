@@ -77,3 +77,12 @@ input {
 .moodContainer {
     margin: 10px;
 }
+
+.addMedsSelectContainer {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.addMedsLabel {
+    margin-right: 20px;
+}
