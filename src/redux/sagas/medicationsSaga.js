@@ -22,9 +22,21 @@ function* addNewMedication(action) {
     }
 }
 
+function* deleteMedication(action) {
+    console.log('in deleteMedication saga action.payload is: ', action.payload);
+    
+    try {
+        yield axios.put(`/api/medications/${action.payload}`);
+        yield put({ type: 'FETCH_MEDICATIONS' });
+    } catch (error) {
+        console.log('Error in deleteMedication', error);
+    }
+}
+
 function* medicationsSaga() {
     yield takeLatest('FETCH_MEDICATIONS', fetchMedications);
     yield takeLatest('ADD_NEW_MEDICATION', addNewMedication);
+    yield takeLatest('DELETE_MEDICATION', deleteMedication);
 }
 
 export default medicationsSaga;

@@ -14,6 +14,10 @@ class MedicationItem extends Component {
     handleDelete = () => {
         console.log('delete button clicked!');
         // dispatch to saga to delete
+        this.props.dispatch({ 
+            type: 'DELETE_MEDICATION', 
+            payload: this.props.medication.id 
+        })
     }
 
     render() {
