@@ -12,34 +12,88 @@ import { withRouter } from 'react-router-dom';
 
 class AddMedications extends Component {
 
-    state = {
-        medicationName: '',
-        dosage: 0,
-        units: 'mg',
-        frequency: '',
-        time: ''
+    componentDidMount(){
+        // get current medications for comparison
+        this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
     }
 
-    addNewMedication = () => {
-        console.log('add button clicked!');
-        //dispatch to addMed saga
-        this.props.dispatch({ type: 'ADD_NEW_MEDICATION', payload: this.state });
-        // reset inputs
-        this.setState({
+    state = {
+        newMedication: {
             medicationName: '',
             dosage: 0,
             units: 'mg',
             frequency: '',
             time: ''
-        })
+        }
+    }
+
+    addNewMedication = () => {
+        console.log('add button clicked!');
+        //dispatch to addMed saga
+        this.props.dispatch({ type: 'ADD_NEW_MEDICATION', payload: this.state.newMedication });
+        // reset inputs
+        this.setState({
+            newMedication: {
+                medicationName: '',
+                dosage: 0,
+                units: 'mg',
+                frequency: '',
+                time: ''
+            }
+        });
+        
         // route back to settings page
-        this.props.history.push(`/settings`)
+        this.props.history.push(`/settings`);
+        // if(
+        //     this.state.newMedication.medicationName === this.props.medicationsReducer.name &&
+        //     this.state.newMedication.dosage === this.props.medicationsReducer.dosage &&
+        //     this.state.newMedication.units === this.props.medicationsReducer.units &&
+        //     this.state.newMedication.frequency === this.props.medicationsReducer.frequency &&
+        //     this.state.newMedication.time === this.props.medicationsReducer.time &&
+        //     this.props.medicationsReducer.disabled === true
+        // ) {
+        //     // alert user that it already exists
+        //     alert('You already have a medication matching these details. Are you sure you want to add it again?');
+            
+        //     //dispatch to addMed saga
+        //     this.props.dispatch({ type: 'ADD_NEW_MEDICATION', payload: this.state.newMedication });
+        //     // reset inputs
+        //     this.setState({
+        //         newMedication: {
+        //             medicationName: '',
+        //             dosage: 0,
+        //             units: 'mg',
+        //             frequency: '',
+        //             time: ''
+        //         }
+        //     })
+        //     // route back to settings page
+        //     this.props.history.push(`/settings`)
+        // }
+        // else{
+        //     //dispatch to addMed saga
+        //     this.props.dispatch({ type: 'ADD_NEW_MEDICATION', payload: this.state.newMedication });
+        //     // reset inputs
+        //     this.setState({
+        //         newMedication: {
+        //             medicationName: '',
+        //             dosage: 0,
+        //             units: 'mg',
+        //             frequency: '',
+        //             time: ''
+        //         }
+        //     })
+        //     // route back to settings page
+        //     this.props.history.push(`/settings`)
+        // }
     }
 
     handleChangeFor = (propertyName, event) => {
         this.setState({
-            ...this.state,
-            [propertyName]: event.target.value
+            newMedication: {
+                ...this.state.newMedication,
+                [propertyName]: event.target.value
+            }
         })
     }
 
@@ -52,7 +106,7 @@ class AddMedications extends Component {
                 <TextField
                     // id="standard-helperText"
                     label="Medication Name"
-                    defaultValue={this.state.medicationName}
+                    defaultValue={this.state.newMedication.medicationName}
                     type="text"
                     margin="normal"
                     variant="outlined"
@@ -64,7 +118,7 @@ class AddMedications extends Component {
                 <TextField
                     // id="standard-helperText"
                     // label="0"
-                    defaultValue={this.state.dosage}
+                    defaultValue={this.state.newMedication.dosage}
                     type="number"
                     margin="normal"
                     variant="outlined"
@@ -76,7 +130,7 @@ class AddMedications extends Component {
                 <TextField
                     // id="standard-helperText"
                     // label="Units"
-                    defaultValue={this.state.units}
+                    defaultValue={this.state.newMedication.units}
                     type="text"
                     margin="normal"
                     variant="outlined"
@@ -90,7 +144,7 @@ class AddMedications extends Component {
                         <Select
                             labelId="frequency"
                             id="frequency"
-                            value={this.state.frequency}
+                            value={this.state.newMedication.frequency}
                             onChange={(event) => this.handleChangeFor('frequency', event)}
                             autoWidth
                         >
@@ -111,7 +165,7 @@ class AddMedications extends Component {
                         <Select
                             labelId="time"
                             id="time"
-                            value={this.state.time}
+                            value={this.state.newMedication.time}
                             onChange={(event) => this.handleChangeFor('time', event)}
                             autoWidth
                         >

@@ -35,6 +35,8 @@ class Settings extends Component {
                     <h2>Wellness Team</h2>
                     <button onClick={this.addContact}>+</button>
                 </div> */}
+
+                <pre>{JSON.stringify(this.props, null, 2)}</pre>
             </div>
         );
     }

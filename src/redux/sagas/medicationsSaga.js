@@ -32,10 +32,34 @@ function* deleteMedication(action) {
     }
 }
 
+
+function* updateMedication(action) {
+    console.log('in updateMedication saga, action.payload is: ', action.payload);
+    try {
+        yield axios.put(`/api/medications/edit/${action.payload.id}`, action.payload);
+        yield put({ type: 'FETCH_MEDICATIONS'});
+        yield put({ type: 'FETCH_SELECTED', payload: action.payload});
+    } catch (error) {
+        console.log('Error in updateMedications saga: ', error);
+    }
+}
+
+function* selectedMedication(action) {
+    try{
+        const medicationDetails = yield axios.get(`/api/medications/selected/${action.payload}`);
+        console.log('selectedMedication saga medicationDetails.data: ', medicationDetails.data[0]);
+        yield put({ type: 'SET_SELECTED_MEDICATION', payload: medicationDetails.data[0]});
+    } catch(error){
+        console.log('error in selectedMedication saga: ', error);
+    }
+}
+
 function* medicationsSaga() {
     yield takeLatest('FETCH_MEDICATIONS', fetchMedications);
     yield takeLatest('ADD_NEW_MEDICATION', addNewMedication);
     yield takeLatest('DELETE_MEDICATION', deleteMedication);
+    yield takeLatest('UPDATE_MEDICATION', updateMedication);
+    yield takeLatest('FETCH_SELECTED', selectedMedication)
 }
 
 export default medicationsSaga;

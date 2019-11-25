@@ -6,12 +6,12 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     console.log('in /dailyLog GET req.query.date is: ', req.query.date);
     // add quotes to date
-    function addQuotes(value) {
-        var quotedVar = "\'" + value + "\'";
-        return quotedVar;
-    }
-    let date = addQuotes(req.query.date)
-    console.log('in /dailyLog GET stringified date is: ', date);
+    // function addQuotes(value) {
+    //     var quotedVar = "\'" + value + "\'";
+    //     return quotedVar;
+    // }
+    // let date = addQuotes(req.query.date)
+    // console.log('in /dailyLog GET stringified date is: ', date);
     
     // setup pool connect
     const client = await pool.connect();
@@ -22,20 +22,20 @@ router.get('/', async (req, res) => {
         const moodsQueryText = `SELECT * FROM "moods_per_day"
         WHERE "date"=$1 AND "user_id"=$2;`;
         // query to moods_per_day
-        const moodsLog = await client.query(moodsQueryText, [date, req.user.id])
+        const moodsLog = await client.query(moodsQueryText, [req.query.date, req.user.id])
         // get medications_per_day entry for specific date and user
         const medicationsQueryText = `SELECT "medications"."id" as "medications_per_day_id", "medications_per_day"."date", "medications_per_day"."user_id", "medications_per_day"."taken", "medications"."id" as "medications_id", "medications"."name", "medications"."dosage", "medications"."units", "medications"."frequency", "medications"."time" 
         FROM "medications_per_day"
         JOIN "medications"
         ON "medications_per_day"."medication_id" = "medications"."id"
         WHERE "date"=$1 AND "medications_per_day"."user_id"=$2;`;
-        const medicationsLog = await client.query(medicationsQueryText, [date, req.user.id]);
+        const medicationsLog = await client.query(medicationsQueryText, [req.query.date, req.user.id]);
 
-        console.log('in dailyLog router moodsLog is: ', moodsLog, ' and medicationsLog is: ', medicationsLog);
+        console.log('in dailyLog router moodsLog.rows is: ', moodsLog.rows[0], ' and medicationsLog.rows is: ', medicationsLog.rows[0]);
         
         await client.query('COMMIT');
         // send array with both sets of data
-        res.send([moodsLog, medicationsLog]);
+        res.send([moodsLog.rows[0], medicationsLog.rows[0]]);
     }
     catch (error) {
         await client.query('ROLLBACK');

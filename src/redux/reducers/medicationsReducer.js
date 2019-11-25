@@ -1,4 +1,3 @@
-// import { actionChannel } from "@redux-saga/core/effects";
 
 /* Hold user's medications */
 const medicationsReducer = (state = [], action) => {

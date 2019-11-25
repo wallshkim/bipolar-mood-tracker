@@ -17,6 +17,20 @@ router.get('/', (req, res) => {
         });
 });
 
+// Gets info for selected medication
+    router.get(`/selected/:id`, (req, res) => {
+        const queryText = `SELECT * FROM "medications" WHERE "id"=$1;`;
+        pool.query(queryText, [req.params.id])
+            .then(result => {
+                res.send(result.rows);
+            })
+            .catch(error => {
+                console.log('Error completing SELECT medication details: ', error);
+                res.sendStatus(500);
+            })
+    })
+
+
 // Handles Ajax request to add user's new medication information
 router.post('/', (req, res) => {
     const newMedication = req.body;
@@ -43,6 +57,19 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     const queryText = `UPDATE "medications" SET "disabled"=TRUE WHERE "id"=$1;`;
     pool.query(queryText, [req.params.id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error completing DELETE medication query', err);
+            res.sendStatus(500);
+        });
+});
+
+/* Edit selected medication */
+router.put('/edit/:id', (req, res) => {
+    const updatedMedication = req.body;
+    const queryText = `UPDATE "medications" SET "name"=$1, "dosage"=$2, "units"=$3, "frequency"=$4, "time"=$5 WHERE "id"=$6;`;
+    const queryValues = [updatedMedication.name, updatedMedication.dosage, updatedMedication.units, updatedMedication.frequency, updatedMedication.time, req.params.id];
+    pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
             console.log('Error completing DELETE medication query', err);

@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 
 class MedicationItem extends Component {
 
-    handleEdit = () => {
+    handleEdit = (id) => {
         console.log('edit button clicked!');
+        this.props.dispatch({
+            type: 'FETCH_SELECTED',
+            payload: id
+        })
         // route to EditMedication Component
+        this.props.history.push(`/medications/edit/${id}`)
     }
 
     handleDelete = () => {
@@ -27,11 +33,15 @@ class MedicationItem extends Component {
             // Displays ListItem for each medication in medicationsReducer
             <ListItem>
                 <ListItemText primary={medication.name} />
-                <Button color="primary" onClick={this.handleEdit}>Edit</Button>
+                <Button color="primary" onClick={() => this.handleEdit(medication.id)}>Edit</Button>
                 <Button color="primary" onClick={this.handleDelete}>Delete</Button>
             </ListItem>
         )
     }
 }
 
-export default connect()(MedicationItem);
+const mapReduxStateToProps = (reduxState) => {
+    return reduxState
+}
+
+export default withRouter(connect(mapReduxStateToProps)(MedicationItem));
