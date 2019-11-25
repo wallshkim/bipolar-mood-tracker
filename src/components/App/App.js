@@ -17,7 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import Settings from '../Settings/Settings';
-import MoodLog from '../MoodLog/MoodLog';
+import DailyLog from '../DailyLog/DailyLog';
 import AddMedications from '../AddMedications/AddMedications';
 
 
@@ -66,10 +66,10 @@ class App extends Component {
               component={Settings}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
-            they will see the MoodLog page instead. */}
+            they will see the DailyLog page instead. */}
             <ProtectedRoute
-              path="/moodLog"
-              component={MoodLog}
+              path="/dailyLog"
+              component={DailyLog}
             />
 
             <ProtectedRoute

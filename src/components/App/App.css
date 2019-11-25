@@ -69,7 +69,7 @@ input {
     display: flex;
 }
 
-.MoodLog-InputContainer {
+.DailyLog-InputContainer {
     display: flex;
     
 }
@@ -86,3 +86,9 @@ input {
 .addMedsLabel {
     margin-right: 20px;
 }
+
+.sliderContainer {
+    margin: 20px;
+    width: 80%;
+}
+

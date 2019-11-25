@@ -25,8 +25,8 @@ const Nav = (props) => (
           <Link className="nav-link" to="/settings">
             Settings
           </Link>
-          <Link className="nav-link" to="/moodLog">
-            Mood Log
+          <Link className="nav-link" to="/dailyLog">
+            Daily Log
           </Link>
           <LogOutButton className="nav-link"/>
         </>

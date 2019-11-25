@@ -2,9 +2,8 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_MEDICATIONS" actions
-function* fetchMedications(action) {
+function* fetchMedications() {
     try {
-        // console.log('in fetchMedications, action.payload is: ', action.payload);
         const response = yield axios.get(`/api/medications`);
         yield put({ type: 'SET_MEDICATIONS', payload: response.data });
         console.log('in fetchMedications, response.data is: ', response.data);
