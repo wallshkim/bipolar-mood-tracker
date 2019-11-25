@@ -15,8 +15,8 @@ function* fetchDailyLog(action) {
     try{
         console.log('in fetchDailyLog, action.payload is: ', action.payload);
         const response = yield axios.get(`/api/dailyLog/`, { params: {date: action.payload}});
+        console.log('in fetchDailyLog, response.data is: ', response.data);
         yield put({ type: 'SET_DAILY_LOG', payload: response.data});
-        console.log('in fetchDailyLog, response is: ', response);
     } catch (error) {
         console.log('fetchDailyLog post request failed', error);
     }

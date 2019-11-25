@@ -32,10 +32,11 @@ router.get('/', async (req, res) => {
         const medicationsLog = await client.query(medicationsQueryText, [req.query.date, req.user.id]);
 
         console.log('in dailyLog router moodsLog.rows is: ', moodsLog.rows[0], ' and medicationsLog.rows is: ', medicationsLog.rows[0]);
-        
+        const moodsData = moodsLog.rows[0];
+        const medicationsData = medicationsLog.rows[0];
         await client.query('COMMIT');
         // send array with both sets of data
-        res.send([moodsLog.rows[0], medicationsLog.rows[0]]);
+        res.send({...moodsData, ...medicationsData});
     }
     catch (error) {
         await client.query('ROLLBACK');
