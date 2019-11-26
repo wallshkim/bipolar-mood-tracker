@@ -5,7 +5,7 @@ import user from './userReducer';
 import medicationsReducer from './medicationsReducer';
 import selectedMedicationReducer from './selectedMedicationReducer';
 import dailyLogsReducer from './dailyLogsReducer';
-
+import currentDateReducer from './currentDateReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,7 +19,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   medicationsReducer, // will have medications for specific user & details of selected medication
   dailyLogsReducer,
-  selectedMedicationReducer
+  selectedMedicationReducer,
+  currentDateReducer
 });
 
 export default rootReducer;

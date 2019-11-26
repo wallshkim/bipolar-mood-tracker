@@ -30,7 +30,6 @@ router.get('/', (req, res) => {
             })
     })
 
-
 // Handles Ajax request to add user's new medication information
 router.post('/', (req, res) => {
     const newMedication = req.body;

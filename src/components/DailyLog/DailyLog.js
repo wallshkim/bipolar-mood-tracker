@@ -13,27 +13,27 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
-
 class DailyLog extends Component {
 
     // Current moment
-    rawDate = moment().subtract(0/*this.props.daysBackReducer*/, 'days');
+    // rawDate = moment().subtract(0/*this.props.daysBackReducer*/, 'days');
 
     componentDidMount() {
         this.fetchMedications();
+        this.props.dispatch({
+            type: 'SET_DATE',
+            payload: moment().subtract(this.props.daysBackReducer).format('L')
+        });
+        // dispatch only if currentDateReducer has date
+        this.props.currentDateReducer &&
+        this.props.dispatch({
+            type: 'FETCH_DAILY_LOG',
+            payload: this.props.currentDateReducer,
+        })
     }
-
-    state = {
-        date: this.rawDate.format('L'),
-        sleep: '',
-        elevated: 0,
-        depressed: 0,
-        irritability: 0,
-        anxiety: 0,
-        psychoticSymptoms: '',
-        therapy: '',
-        notes: '',
-    }
+    
+    // var for this.props.dailyLogsReducer.moodLog
+    dailyMoods = this.props.dailyLogsReducer;
 
     // Get user's medications in order to display them in form below
     fetchMedications = () => {
@@ -41,18 +41,18 @@ class DailyLog extends Component {
     }
 
     fetchDailyLog = () => {
-        this.props.dispatch({ type: 'FETCH_DAILY_LOG', payload: this.rawDate.format('L') });
+        this.props.dispatch({ type: 'FETCH_DAILY_LOG', payload: this.props.currentDateReducer});
     }
 
     /* Requires certain inputs & dispatches action to add entries to moods_per_day in database */
     handleSubmit = () => {
-        console.log('in handleSubmit this.state is: ', this.state);
+        console.log('in handleSubmit this.state is: ', this.dailyMoods);
         // Require fields
-        if (this.state.sleep && this.state.elevated && this.state.depressed && this.state.irritability && this.state.anxiety && this.state.psychoticSymptoms && this.state.therapy) {
+        if (this.dailyMoods.sleep && this.dailyMoods.elevated && this.dailyMoods.depressed && this.dailyMoods.irritability && this.dailyMoods.anxiety && this.dailyMoods.psychoticSymptoms && this.dailyMoods.therapy) {
             // Call addMoods saga
             this.props.dispatch({
                 type: 'ADD_DAILY_LOG',
-                payload: { moods: this.state, medications: this.props.medicationsReducer }
+                payload: { moods: this.dailyMoods, medications: this.props.medicationsReducer }
             })
         }
         else {
@@ -74,36 +74,35 @@ class DailyLog extends Component {
     // Update state when inputs are changed
     handleChangeFor = (propertyName, event) => {
         this.setState({
-            ...this.state,
+            ...this.dailyMoods,
             [propertyName]: event.target.value
         })
     }
 
     handleElevatedChange = (event, value) => {
         this.setState({
-            ...this.state,
+            ...this.dailyMoods,
             elevated: value
         })
     }
 
-
     handleDepressedChange = (event, value) => {
         this.setState({
-            ...this.state,
+            ...this.dailyMoods,
             depressed: value
         })
     }
 
     handleIrritabilityChange = (event, value) => {
         this.setState({
-            ...this.state,
+            ...this.dailyMoods,
             irritability: value
         })
     }
 
     handleAnxietyChange = (event, value) => {
         this.setState({
-            ...this.state,
+            ...this.dailyMoods,
             anxiety: value
         })
     }
@@ -121,15 +120,14 @@ class DailyLog extends Component {
         return (
             <div className="moodContainer">
                 <Button onClick={this.fetchDailyLog}>FETCH DAILY LOG</Button>
-                <h3>{this.rawDate.format('MMMM Do, YYYY')}</h3>
+                <h3>{moment(this.props.currentDateReducer).format('MMMM Do, YYYY')}</h3>
 
                 <div>
                     <p>Hours Slept Last Night: </p>
                     <TextField
                         id="standard-helperText"
                         label="Hours"
-                        // value={this.props.selectedMovieDetailsReducer.title}
-                        defaultValue={this.state.sleep}
+                        defaultValue={this.dailyMoods.sleep}
                         type="number"
                         margin="normal"
                         variant="outlined"
@@ -144,7 +142,7 @@ class DailyLog extends Component {
                     <div className="sliderContainer">
                         <Slider
                             onChange={this.handleElevatedChange}
-                            defaultValue={this.state.elevated}
+                            defaultValue={this.dailyMoods.elevated}
                             // valueLabelFormat={valueLabelFormat}
                             // getAriaValueText={valuetext}
                             // aria-labelledby="Today's most extreme Elevated mood"
@@ -206,7 +204,7 @@ class DailyLog extends Component {
                     <div className="sliderContainer">
                         <Slider
                             onChange={this.handleDepressedChange}
-                            defaultValue={this.state.depressed}
+                            defaultValue={this.dailyMoods.depressed}
                             // valueLabelFormat={valueLabelFormat}
                             // getAriaValueText={valuetext}
                             // aria-labelledby="Today's most extreme Elevated mood"
@@ -255,7 +253,7 @@ class DailyLog extends Component {
                     <div className="sliderContainer">
                         <Slider
                             onChange={this.handleIrritabilityChange}
-                            defaultValue={this.state.irritability}
+                            defaultValue={this.dailyMoods.irritability}
                             // valueLabelFormat={valueLabelFormat}
                             // getAriaValueText={valuetext}
                             // aria-labelledby="Today's most extreme Elevated mood"
@@ -304,7 +302,7 @@ class DailyLog extends Component {
                     <div className="sliderContainer">
                         <Slider
                             onChange={this.handleAnxietyChange}
-                            defaultValue={this.state.anxiety}
+                            defaultValue={this.dailyMoods.anxiety}
                             // valueLabelFormat={valueLabelFormat}
                             // getAriaValueText={valuetext}
                             // aria-labelledby="Today's most extreme Elevated mood"
@@ -338,7 +336,7 @@ class DailyLog extends Component {
                     <TextField
                         id="standard-helperText"
                         label="True or False"
-                        defaultValue={this.state.psychoticSymptoms}
+                        defaultValue={this.dailyMoods.psychoticSymptoms}
                         type="text"
                         margin="normal"
                         variant="outlined"
@@ -350,7 +348,7 @@ class DailyLog extends Component {
                     <TextField
                         id="standard-helperText"
                         label="True or False"
-                        defaultValue={this.state.therapy}
+                        defaultValue={this.dailyMoods.therapy}
                         type="text"
                         margin="normal"
                         variant="outlined"
@@ -362,7 +360,7 @@ class DailyLog extends Component {
                     <TextField
                         id="standard-helperText"
                         label="Notes"
-                        defaultValue={this.state.notes}
+                        defaultValue={this.dailyMoods.notes}
                         type="text"
                         margin="normal"
                         variant="outlined"

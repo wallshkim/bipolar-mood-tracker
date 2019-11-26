@@ -30,13 +30,10 @@ router.get('/', async (req, res) => {
         ON "medications_per_day"."medication_id" = "medications"."id"
         WHERE "date"=$1 AND "medications_per_day"."user_id"=$2;`;
         const medicationsLog = await client.query(medicationsQueryText, [req.query.date, req.user.id]);
-
-        console.log('in dailyLog router moodsLog.rows is: ', moodsLog.rows[0], ' and medicationsLog.rows is: ', medicationsLog.rows[0]);
-        const moodsData = moodsLog.rows[0];
-        const medicationsData = medicationsLog.rows[0];
+        console.log('in dailyLog router moodsLog.rows is: ', moodsLog.rows[0], ' and medicationsLog.rows is: ', medicationsLog.rows);
         await client.query('COMMIT');
         // send array with both sets of data
-        res.send({...moodsData, ...medicationsData});
+        res.send({ moodsDailyLog: { ...moodsLog.rows[0] }, medsDailyLog: [...medicationsLog.rows]});
     }
     catch (error) {
         await client.query('ROLLBACK');

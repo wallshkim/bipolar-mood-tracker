@@ -1,4 +1,3 @@
-
 /* Hold user's medications */
 const medicationsReducer = (state = [], action) => {
     switch (action.type) {
@@ -8,7 +7,7 @@ const medicationsReducer = (state = [], action) => {
             return state.map(medication => {
                 if(medication.id === action.payload.medId){
                     console.log('medication id and action.payload.medId are: ', medication.id, action.payload.medId);
-                    medication.taken = action.payload.taken;
+                        medication.taken = action.payload.taken;
                     return medication;
                 } else {
                     return medication;
