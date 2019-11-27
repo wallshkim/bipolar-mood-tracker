@@ -92,3 +92,6 @@ input {
     width: 80%;
 }
 
+.DailyLogDateButtonContainer {
+    display: flex;
+}

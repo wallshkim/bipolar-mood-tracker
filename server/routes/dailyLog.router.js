@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     // }
     // let date = addQuotes(req.query.date)
     // console.log('in /dailyLog GET stringified date is: ', date);
-    
+
     // setup pool connect
     const client = await pool.connect();
     try {
@@ -24,16 +24,16 @@ router.get('/', async (req, res) => {
         // query to moods_per_day
         const moodsLog = await client.query(moodsQueryText, [req.query.date, req.user.id])
         // get medications_per_day entry for specific date and user
-        const medicationsQueryText = `SELECT "medications"."id" as "medications_per_day_id", "medications_per_day"."date", "medications_per_day"."user_id", "medications_per_day"."taken", "medications"."id" as "medications_id", "medications"."name", "medications"."dosage", "medications"."units", "medications"."frequency", "medications"."time" 
-        FROM "medications_per_day"
-        JOIN "medications"
-        ON "medications_per_day"."medication_id" = "medications"."id"
+        const medicationsQueryText = `SELECT "medications"."id", "medications_per_day"."date", "medications_per_day"."user_id", "medications_per_day"."taken", "medications_per_day"."id" as "medications_per_day_id", "medications"."name", "medications"."dosage", "medications"."units", "medications"."frequency", "medications"."time" 
+        FROM "medications"
+        JOIN "medications_per_day"
+        ON "medications"."id"="medications_per_day"."medication_id"
         WHERE "date"=$1 AND "medications_per_day"."user_id"=$2;`;
         const medicationsLog = await client.query(medicationsQueryText, [req.query.date, req.user.id]);
         console.log('in dailyLog router moodsLog.rows is: ', moodsLog.rows[0], ' and medicationsLog.rows is: ', medicationsLog.rows);
         await client.query('COMMIT');
         // send array with both sets of data
-        res.send({ moodsDailyLog: { ...moodsLog.rows[0] }, medsDailyLog: [...medicationsLog.rows]});
+        res.send({ moodsDailyLog: { ...moodsLog.rows[0] }, medsDailyLog: [...medicationsLog.rows] });
     }
     catch (error) {
         await client.query('ROLLBACK');
@@ -112,7 +112,7 @@ router.post('/', async (req, res) => {
         const moodQueryValues = [req.user.id, moods.date, moods.elevated, moods.depressed, moods.sleep, moods.irritability, moods.anxiety, moods.psychoticSymptoms, moods.therapy, moods.notes]
         // query to moods_per_day
         await client.query(moodsQueryText, moodQueryValues)
-        
+
         // query to medications_per_day for every medication attached to user
         await Promise.all(
             medications.map(medication => {
