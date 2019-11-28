@@ -14,6 +14,7 @@ const medicationsReducer = (state = [], action) => {
             return state.map(medication => {
                 if (medication.id === action.payload.medId) {
                     console.log('medication id and action.payload.medId are: ', medication.id, action.payload.medId);
+                    console.log('in SET_MEDS_TAKEN, action.payload.taken is: ', action.payload.taken);
                     medication.taken = action.payload.taken;
                     return medication;
                 } else {

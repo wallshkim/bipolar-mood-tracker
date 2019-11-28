@@ -7,7 +7,7 @@ const defaultState = {
     depressed: 0,
     irritability: 0,
     anxiety: 0,
-    psychoticSymptoms: false,
+    psychotic_symptoms: false,
     therapy: false,
     notes: '',
     date: moment().format('L')
@@ -40,7 +40,7 @@ const dailyLogsReducer = (state = defaultState, action) => {
             else if (action.payload.property === 'anxiety') {
                 return { ...state, anxiety: action.payload.newValue }
             } 
-            else if (action.payload.property === 'psychoticSymptoms') {
+            else if (action.payload.property === 'psychotic_symptoms') {
                 return { ...state, psychoticSymptoms: action.payload.newValue }
             } 
             else if (action.payload.property === 'therapy') {

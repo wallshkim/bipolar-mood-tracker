@@ -95,3 +95,7 @@ input {
 .DailyLogDateButtonContainer {
     display: flex;
 }
+
+.Charts-Container {
+     height: 500px;
+}

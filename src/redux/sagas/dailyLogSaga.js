@@ -21,7 +21,7 @@ function* fetchDailyLog(action) {
         yield put({ type: 'SET_DAILY_LOG', payload: response.data.moodsDailyLog });
         if (response.data.medsDailyLog.length !== 0) {
             // check if it's a previously logged medication day
-            console.log(response.data.medsDailyLog.length!==0);
+            console.log(response.data.medsDailyLog.length !== 0);
             yield put({ type: 'SET_MEDICATIONS', payload: response.data.medsDailyLog });
         } else {
             // else send back active medications
@@ -36,31 +36,26 @@ function* fetchDailyLog(action) {
 
 function* changeDailyLog(action) {
     console.log('in changeDailyLog, action.payload is: ', action.payload);
+    // Get today's date from currentDateReducer to use below
     let today = yield select(reduxState => reduxState.currentDateReducer);
-    console.log('in changeDailyLog today is: ', today);
+    // console.log('in changeDailyLog today is: ', today);
 
     try {
+        /* Update the daysBackReducer */
         if (action.payload === 'increment') {
             yield put({ type: 'INCREMENT_DAYS_BACK' });
-            // yield put({
-            //     type: 'FETCH_DAILY_LOG',
-            //     payload: today.subtract(dayOffset, "days").format('L')
-            // })
         }
         else if (action.payload === 'decrement') {
             yield put({ type: 'DECREMENT_DAYS_BACK' });
-            // yield put({
-            //     type: 'FETCH_DAILY_LOG',
-            //     payload: today.subtract(dayOffset, "days").format('L')
-            // })
-
         }
+        // Get the updated daysBackReducer value
         let dayOffset = yield select(reduxState => reduxState.daysBackReducer);
-
+        // 
         const format = today.today.format('L')
         let newDay = moment(format).subtract(dayOffset, "days").format('L');
 
-
+        console.log('in changeDailyLog, today.today is: ', today.today);
+        console.log('in changeDailyLog, newDay is: ', newDay);
         yield put({
             type: 'FETCH_DAILY_LOG',
             payload: newDay

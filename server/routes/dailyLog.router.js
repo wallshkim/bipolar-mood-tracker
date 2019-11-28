@@ -5,13 +5,6 @@ const router = express.Router();
 // Handles axios get for moods_per_day and medications_per_day
 router.get('/', async (req, res) => {
     console.log('in /dailyLog GET req.query.date is: ', req.query.date);
-    // add quotes to date
-    // function addQuotes(value) {
-    //     var quotedVar = "\'" + value + "\'";
-    //     return quotedVar;
-    // }
-    // let date = addQuotes(req.query.date)
-    // console.log('in /dailyLog GET stringified date is: ', date);
 
     // setup pool connect
     const client = await pool.connect();
@@ -44,53 +37,6 @@ router.get('/', async (req, res) => {
         client.release();
     }
 });
-
-// router.post('/newDay', async (req, res) => {
-//     console.log('in /newDay post req.body is: ', req.body);
-
-//     // setup pool connect
-//     const client = await pool.connect();
-
-//     try {
-//         // Create var for date from cronjob
-//         const date = req.body.date;
-//         // Set start incase of a error
-//         await client.query('BEGIN')
-//         // create var for select user ids query
-//         const userIds = await client.query(`SELECT "id" FROM "user";`);
-//         // query to moods_per_day for every user
-//         await Promise.all(
-//             userIds.map(id => {
-//                 const moodQueryText = `INSERT INTO "moods_per_day" ("user_id", "date") 
-//                 VALUES ($1, $2);`;
-//                 const moodQueryValues = [id, date];
-//                 client.query(moodQueryText, moodQueryValues);
-
-//                 const getMedsQueryText = `SELECT "medications"."id" FROM "medications"
-//                 WHERE "medications"."user_id"=$1 AND "medications"."disabled" = false;`;
-//                 const getMedsQueryValues = [id];
-//                 const medIds = client.query(getMedsQueryText, getMedsQueryValues);
-
-//                 medIds.forEach(med => {
-
-//                 });
-
-//             });
-
-//         )
-//         await client.query('COMMIT')
-//         res.sendStatus(201)
-//     }
-//     catch (error) {
-//         await client.query('ROLLBACK');
-//         console.log('Error in dailyLogRouter /newDay POST: ', error);
-//         res.sendStatus(500);
-//     }
-//     finally {
-//         client.release();
-//     }
-// });
-
 
 // Handles axios post to moods_per_day and medications_per_day
 router.post('/', async (req, res) => {

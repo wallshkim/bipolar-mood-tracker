@@ -20,6 +20,7 @@ import Settings from '../Settings/Settings';
 import DailyLog from '../DailyLog/DailyLog';
 import AddMedications from '../AddMedications/AddMedications';
 import EditMedications from '../EditMedications/EditMedications';
+import Charts from '../Charts/Charts';
 
 
 import './App.css';
@@ -81,6 +82,11 @@ class App extends Component {
             <ProtectedRoute
               path="/medications/edit/:id"
               component={EditMedications}
+            />
+
+            <ProtectedRoute
+              path="/charts"
+              component={Charts}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

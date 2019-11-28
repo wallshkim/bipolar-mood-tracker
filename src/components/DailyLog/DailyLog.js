@@ -403,7 +403,7 @@ class DailyLog extends Component {
                     <TextField
                         id="standard-helperText"
                         label="True or False"
-                        value={this.props.dailyLogsReducer.psychoticSymptoms}
+                        value={this.props.dailyLogsReducer.psychotic_symptoms}
                         type="text"
                         margin="normal"
                         variant="outlined"
