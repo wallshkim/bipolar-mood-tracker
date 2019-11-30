@@ -1,3 +1,7 @@
+App {
+      overflow: hidden;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
@@ -97,5 +101,14 @@ input {
 }
 
 .Charts-Container {
-     height: 500px;
+     padding-left: 0px;
+     padding-right: 10px;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     margin: 10px 0px;
+}
+
+
+.Charts-Seven {
+    padding: 5px;
 }

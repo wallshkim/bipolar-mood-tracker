@@ -407,7 +407,7 @@ class DailyLog extends Component {
                         type="text"
                         margin="normal"
                         variant="outlined"
-                        onChange={(event) => this.handleChangeFor('psychoticSymptoms', event)}
+                        onChange={(event) => this.handleChangeFor('psychotic_symptoms', event)}
                     />
                 </div>
                 <div>

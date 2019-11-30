@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
         // Moods query arguments
         const moodsQueryText = `INSERT INTO "moods_per_day" ("user_id", "date", "elevated", "depressed", "sleep", "irritability", "anxiety", "psychotic_symptoms", "therapy", "notes") 
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`;
-        const moodQueryValues = [req.user.id, moods.date, moods.elevated, moods.depressed, moods.sleep, moods.irritability, moods.anxiety, moods.psychoticSymptoms, moods.therapy, moods.notes]
+        const moodQueryValues = [req.user.id, moods.date, moods.elevated, moods.depressed, moods.sleep, moods.irritability, moods.anxiety, moods.psychotic_symptoms, moods.therapy, moods.notes]
         // query to moods_per_day
         await client.query(moodsQueryText, moodQueryValues)
 

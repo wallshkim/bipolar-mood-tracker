@@ -41,7 +41,7 @@ const dailyLogsReducer = (state = defaultState, action) => {
                 return { ...state, anxiety: action.payload.newValue }
             } 
             else if (action.payload.property === 'psychotic_symptoms') {
-                return { ...state, psychoticSymptoms: action.payload.newValue }
+                return { ...state, psychotic_symptoms: action.payload.newValue }
             } 
             else if (action.payload.property === 'therapy') {
                 return { ...state, therapy: action.payload.newValue }
