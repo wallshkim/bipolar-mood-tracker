@@ -9,7 +9,7 @@ const LogOutButton = props => (
     className={props.className}
     onClick={() => props.dispatch({ type: 'LOGOUT' })}
   >
-    Log Out
+    LOG OUT
   </button>
 );
 

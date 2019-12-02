@@ -37,7 +37,7 @@ class MedicationItem extends Component {
             //     <Button color="primary" onClick={this.handleDelete}>Delete</Button>
             // </ListItem>
             <tr>
-                <td>{medication.name}</td>
+                <td>{medication.name} ({medication.dosage}{medication.units})</td>
                 <td><Button color="primary" onClick={() => this.handleEdit(medication.id)}>Edit</Button></td>
                 <td><Button color="primary" onClick={this.handleDelete}>Delete</Button></td>
             </tr>

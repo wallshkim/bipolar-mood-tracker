@@ -5,6 +5,7 @@ App {
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0px;
+    min-height: 730px;
 }
 
 .alert {
@@ -60,8 +61,9 @@ input {
     margin-left: 5px;
     font: inherit;
     outline:0;
-    border-bottom:1px solid #444; 
+    text-decoration: underline;
     cursor: pointer;
+    padding-bottom: 200px;
 }
 
 /* Makes list titles and buttons on same line */

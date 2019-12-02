@@ -31,7 +31,7 @@ class EditMedications extends Component {
     handleChangeFor = (property, event) => {
         this.setState({
             editedMedication: {
-                ...this.state.editedMedication,
+                ...this.props.selectedMedicationReducer,
                 [property]: event.target.value,
             }
         });
@@ -41,7 +41,20 @@ class EditMedications extends Component {
     handleCancel = () => {
         console.log('cancel clicked');
         this.props.dispatch({
+            type: 'CLEAR_SELECTED_MEDICATION',
+        })
+        this.props.dispatch({
             type: 'FETCH_MEDICATIONS',
+        });
+        this.setState({
+            editedMedication: {
+                id: '',
+                name: '',
+                dosage: '',
+                units: '',
+                frequency: '',
+                time: ''
+            }
         });
         // route back to settings
         this.props.history.push(`/settings`);
@@ -55,6 +68,9 @@ class EditMedications extends Component {
             type: 'UPDATE_MEDICATION',
             payload: this.state.editedMedication
         });
+        this.props.dispatch({
+            type: 'CLEAR_SELECTED_MEDICATION',
+        })
         this.props.history.push(`/settings`);
     }
 
@@ -149,8 +165,8 @@ class EditMedications extends Component {
                         <Button variant="contained" color="primary" onClick={this.handleCancel}>Cancel</Button>
                         <Button variant="contained" color="primary" onClick={this.updateMedication}>Update</Button>
 
-                        <pre>{JSON.stringify(this.props.selectedMedicationReducer, null, 2)}</pre>
-                        <pre>{JSON.stringify(this.state, null, 2)}</pre>
+                        {/* <pre>{JSON.stringify(this.props.selectedMedicationReducer, null, 2)}</pre>
+                        <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
                     </>
                 )}
             </div>

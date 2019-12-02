@@ -16,15 +16,14 @@ import BigForwardIcon from '../../images/forward 32px.png';
 import MenuItem from '@material-ui/core/MenuItem';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
-import './DailyLog.css';
-import DisabledDailyLog from '../DisabledDailyLog/DisabledDailyLog';
+import '../DailyLog/DailyLog.css';
 
 
-class DailyLog extends Component {
+class DisabledDailyLog extends Component {
 
     componentDidMount() {
         console.log('mounted log')
-        this.fetchMedications();
+        this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
 
         this.props.currentDateReducer &&
             this.props.dispatch({
@@ -33,106 +32,7 @@ class DailyLog extends Component {
             })
     }
 
-    incrementDaysBack = () => {
-        console.log('incrementDaysBack was clicked!');
-        this.props.dispatch({ type: 'CHANGE_DAILY_LOG', payload: 'increment' });
-    }
-
-    decrementDaysBack = () => {
-        console.log('decrementDaysBack was clicked!');
-        this.props.dispatch({ type: 'CHANGE_DAILY_LOG', payload: 'decrement' });
-    }
-
-    // Get user's medications in order to display them in form below
-    fetchMedications = () => {
-        this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
-    }
-
-    fetchDailyLog = () => {
-        this.props.dispatch({
-            type: 'FETCH_DAILY_LOG',
-            payload: this.props.currentDateReducer.format('L')
-        });
-    }
-
-
-    handleSubmit = () => {
-        console.log('in handleSubmit this.props.dailyLogsReducer is: ', this.props.dailyLogsReducer);
-
-        this.props.dispatch({
-            type: 'ADD_DAILY_LOG',
-            payload: { moods: this.props.dailyLogsReducer, medications: this.props.medicationsReducer }
-        })
-
-    }
-
-    handleMedChange = (id, event) => {
-        console.log('taken changed');
-        console.log('event is: ', event.target.value);
-
-        this.props.dispatch({
-            type: 'SET_MEDICATIONS_TAKEN',
-            payload: { medId: id, taken: event.target.value }
-        })
-    }
-
-    handleChangeFor = (propertyName, event) => {
-        this.props.dispatch({
-            type: 'UPDATE_DAILY_LOG',
-            payload: {
-                property: propertyName,
-                newValue: event.target.value
-            }
-        })
-    }
-
-    handleElevatedChange = (event, value) => {
-        this.props.dispatch({
-            type: 'UPDATE_DAILY_LOG',
-            payload: {
-                property: 'elevated',
-                newValue: value
-            }
-        })
-    }
-
-    handleDepressedChange = (event, value) => {
-        this.props.dispatch({
-            type: 'UPDATE_DAILY_LOG',
-            payload: {
-                property: 'depressed',
-                newValue: value
-            }
-        })
-    }
-
-    handleIrritabilityChange = (event, value) => {
-        this.props.dispatch({
-            type: 'UPDATE_DAILY_LOG',
-            payload: {
-                property: 'irritability',
-                newValue: value
-            }
-        })
-    }
-
-    handleAnxietyChange = (event, value) => {
-        this.props.dispatch({
-            type: 'UPDATE_DAILY_LOG',
-            payload: {
-                property: 'anxiety',
-                newValue: value
-            }
-        })
-    }
-
-
     render() {
-
-        // let dateToShow = this.props.dailyLogsReducer.date ? moment(this.props.dailyLogsReducer.date).format('MMMM Do, YYYY') 
-
-        const format = this.props.currentDateReducer.today.format('L')
-        let newDay = moment(format).subtract(this.props.daysBackReducer, "days").format('MMMM Do, YYYY');
 
         const sliderValues = [
             {
@@ -153,29 +53,19 @@ class DailyLog extends Component {
             },
         ]
 
-
         return (
-            <div className="moodContainer">
-                <div className="DailyLogDateButtonContainer">
-                    <Button onClick={this.incrementDaysBack}><img src={BigBackIcon} alt="back symbol" /></Button>
-                    <h4 className="currentDate-title">{newDay}</h4>
-                    <Button onClick={this.decrementDaysBack}><img src={BigForwardIcon} alt="forward symbol" /></Button>
-                </div>
+            <div className="disabled-log-container">
 
-                {this.props.daysBackReducer > 0 ? <DisabledDailyLog /> :
-                <>
                 <div className="dailyInput hours-slept input-grey-background">
                     <p className="inputLabel margin-right">Hours Slept Last Night: </p>
                     <TextField
                         style={{ maxWidth: '50px', minWidth: '50px' }}
                         id="sleep"
-                        placeholder="0"
-                        // label="Hours"
-                        value={this.props.dailyLogsReducer.sleep}
+                        defaultValue={this.props.dailyLogsReducer.sleep}
+                        disabled
                         type="number"
                         margin="normal"
                         variant='standard'
-                        onChange={(event) => this.handleChangeFor('sleep', event)}
                     />
                 </div>
 
@@ -186,8 +76,8 @@ class DailyLog extends Component {
                     <p className="inputLabel">Today's most extreme Elevated mood: </p>
                     <div className="sliderContainer">
                         <Slider
-                            onChange={this.handleElevatedChange}
-                            value={this.props.dailyLogsReducer.elevated}
+                            defaultValue={this.props.dailyLogsReducer.elevated}
+                            disabled
                             step={1}
                             min={0}
                             max={3}
@@ -204,8 +94,8 @@ class DailyLog extends Component {
                     <p className="inputLabel">Today's most extreme Depressed mood: </p>
                     <div className="sliderContainer">
                         <Slider
-                            onChange={this.handleDepressedChange}
-                            value={this.props.dailyLogsReducer.depressed}
+                            defaultValue={this.props.dailyLogsReducer.depressed}
+                            disabled
                             step={1}
                             min={0}
                             max={3}
@@ -222,8 +112,8 @@ class DailyLog extends Component {
                     <p className="inputLabel">Today's most extreme irritability: </p>
                     <div className="sliderContainer">
                         <Slider
-                            onChange={this.handleIrritabilityChange}
-                            value={this.props.dailyLogsReducer.irritability}
+                            disabled
+                            defaultValue={this.props.dailyLogsReducer.irritability}
                             step={1}
                             min={0}
                             max={3}
@@ -240,8 +130,8 @@ class DailyLog extends Component {
                     <p className="inputLabel">Today's most extreme anxiety: </p>
                     <div className="sliderContainer">
                         <Slider
-                            onChange={this.handleAnxietyChange}
-                            value={this.props.dailyLogsReducer.anxiety}
+                            disabled
+                            defaultValue={this.props.dailyLogsReducer.anxiety}
                             step={1}
                             min={0}
                             max={3}
@@ -258,8 +148,8 @@ class DailyLog extends Component {
                             style={{ maxWidth: '100px', minWidth: '100px' }}
                             labelId="psychotic"
                             id="psychotic"
-                            value={this.props.dailyLogsReducer.psychotic_symptoms}
-                            onChange={(event) => this.handleChangeFor('psychotic_symptoms', event)}
+                            disabled
+                            defaultValue={this.props.dailyLogsReducer.psychotic_symptoms}
                             autoWidth
                         >
                             <MenuItem value="">
@@ -289,8 +179,8 @@ class DailyLog extends Component {
                             style={{ maxWidth: '100px', minWidth: '100px' }}
                             labelId="therapy"
                             id="therapy"
-                            value={this.props.dailyLogsReducer.therapy}
-                            onChange={(event) => this.handleChangeFor('therapy', event)}
+                            defaultValue={this.props.dailyLogsReducer.therapy}
+                            disabled
                             autoWidth
                         >
                             <MenuItem value="">
@@ -319,13 +209,13 @@ class DailyLog extends Component {
                         id="standard-helperText"
                         label="Notes"
                         style={{ maxWidth: '350px', minWidth: '350px' }}
-                        value={this.props.dailyLogsReducer.notes}
+                        defaultValue={this.props.dailyLogsReducer.notes}
                         type="text"
                         rows="4"
                         margin="normal"
                         // variant="filled"
                         multiline={true}
-                        onChange={(event) => this.handleChangeFor('notes', event)}
+                        disabled
                     />
                 </div>
 
@@ -338,14 +228,18 @@ class DailyLog extends Component {
                             <FormControl component="fieldset">
                                 <RadioGroup className="radioGroup-container" value={String(medication.taken)} aria-label="taken" name="taken" onChange={(event) => this.handleMedChange(medication.id, event)}>
                                     <FormControlLabel name="taken" value="true" control={
-                                        <Radio style={{
-                                            color: "black",
-                                        }} />
+                                        <Radio 
+                                            disabled
+                                            style={{
+                                                color: "black",
+                                            }} />
                                     } label="Yes" />
                                     <FormControlLabel name="taken" value="false" control={
-                                        <Radio style={{
-                                            color: "black",
-                                        }} />
+                                        <Radio
+                                            disabled
+                                            style={{
+                                                color: "black",
+                                            }} />
                                     } label="No" />
                                 </RadioGroup>
                             </FormControl>
@@ -353,19 +247,10 @@ class DailyLog extends Component {
                     )
                 })}
 
-                <div className="btn-container">
-                    <Button
-                        style={{ maxWidth: '350px', minWidth: '350px'}}
-                        variant="contained"
-                        color="primary"
-                        onClick={this.handleSubmit}>
-                        Submit
-                    </Button>
-                </div>
+
                 {/* <pre>{JSON.stringify(this.props, null, 2)}</pre>
                 <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-                </>
-                }
+
             </div>
         );
     }
@@ -375,4 +260,4 @@ const mapReduxStateToProps = (reduxState) => {
     return reduxState
 }
 
-export default connect(mapReduxStateToProps)(DailyLog);
+export default connect(mapReduxStateToProps)(DisabledDailyLog);
