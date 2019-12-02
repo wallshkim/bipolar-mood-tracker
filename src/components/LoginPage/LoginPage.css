@@ -1,0 +1,14 @@
+.login-container {
+    background-color: #ffbd59;
+    text-align: center;
+}
+
+/* .logo-container {
+    display: flex;
+    justify-content: center;
+} */
+
+.TextField-without-border-radius fieldset {
+    border-radius: 0;
+    border-color: black;
+}

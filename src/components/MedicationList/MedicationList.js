@@ -20,14 +20,14 @@ class MedicationList extends Component {
     render() {
         return (
             <>
-                <List>
+                {/* <List> */}
                     {this.props.medicationsReducer.map((medication) => {
                         return (
                             <MedicationItem key={medication.id} medication={medication} />
                         )
                     })}
-                </List>
-                <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
+                {/* </List> */}
+                {/* <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre> */}
             </>
         );
     }

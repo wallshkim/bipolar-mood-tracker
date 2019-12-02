@@ -1,0 +1,78 @@
+.moodContainer {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.DailyLogDateButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px 0px;
+}
+
+.currentDate-title {
+    margin-bottom: 1px;
+}
+
+.dailyInput{
+    /* margin: 5px 0px; */
+    padding: 15px 0px;
+    /* padding: 10px; */
+}
+
+.input-grey-background {
+    background-color: #f1f1f1;
+    /* background-color: #ffedd2; */
+}
+
+.hours-slept {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.margin-right {
+    margin-right: 20px;
+}
+
+.DailyLog-InputContainer {
+    display: flex;
+}
+
+.sliderContainer {
+    width: 350px;
+    padding-left: 48px;
+    /* padding-bottom: 15px; */
+}
+
+.inputLabel {
+    padding-left: 24px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.therapy-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    padding: 25px 0px;
+}
+
+.psychotic-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    padding: 25px 0px;
+}
+
+.padding-left {
+    padding-left: 30px;
+}
+
+/* .orange-background{
+    background-color: #ffedd2;
+} */
+
+.radioGroup-container {
+    display: flex;
+    
+}

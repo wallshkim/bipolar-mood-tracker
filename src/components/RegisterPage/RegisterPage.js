@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import './RegisterPage.css';
+import OrangeLogo from '../../images/compassblackfont.png';
+
 
 class RegisterPage extends Component {
   state = {
@@ -37,7 +41,7 @@ class RegisterPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="register-container">
         {this.props.errors.registrationMessage && (
           <h2
             className="alert"
@@ -47,7 +51,75 @@ class RegisterPage extends Component {
           </h2>
         )}
         <form className="RegisterPage-Form" onSubmit={this.registerUser}>
-          <h1>Register User</h1>
+          <div className="logo-container">
+            <img src={OrangeLogo} alt="logo" height="300" />
+          </div>
+          <div className="TextField-without-border-radius">
+            <TextField
+              style={{ maxWidth: '350px', minWidth: '350px' }}
+              id="username"
+              placeholder="Username"
+              // label="Hours"
+              value={this.state.username}
+              type="text"
+              margin="normal"
+              variant='outlined'
+              onChange={this.handleInputChangeFor('username')}
+            />
+          </div>
+          <div className="TextField-without-border-radius">
+            <TextField
+              style={{ maxWidth: '350px', minWidth: '350px' }}
+              id="firstName"
+              placeholder="First Name"
+              // label="Hours"
+              value={this.state.firstName}
+              type="text"
+              margin="normal"
+              variant='outlined'
+              onChange={this.handleInputChangeFor('firstName')}
+            />
+          </div>
+          <div className="TextField-without-border-radius">
+            <TextField
+              style={{ maxWidth: '350px', minWidth: '350px' }}
+              id="lastName"
+              placeholder="Last Name"
+              // label="Hours"
+              value={this.state.lastName}
+              type="text"
+              margin="normal"
+              variant='outlined'
+              onChange={this.handleInputChangeFor('lastName')}
+            />
+          </div>
+          <div className="TextField-without-border-radius">
+            <TextField
+              style={{ maxWidth: '350px', minWidth: '350px' }}
+              id="email"
+              placeholder="Email Address"
+              // label="Hours"
+              value={this.state.email}
+              type="email"
+              margin="normal"
+              variant='outlined'
+              onChange={this.handleInputChangeFor('email')}
+            />
+          </div>
+          <div className="TextField-without-border-radius">
+            <TextField
+              style={{ maxWidth: '350px', minWidth: '350px' }}
+              id="password"
+              placeholder="Password"
+              // label="Hours"
+              value={this.state.password}
+              type="password"
+              margin="normal"
+              variant='outlined'
+              onChange={this.handleInputChangeFor('password')}
+            />
+          </div>
+          {/* <h1>Register User</h1>
           <div>
             <label htmlFor="username">
               Username:
@@ -102,9 +174,10 @@ class RegisterPage extends Component {
                 onChange={this.handleInputChangeFor('password')}
               />
             </label>
-          </div>
+          </div> */}
           <div>
             <input
+              style={{ maxWidth: '350px', minWidth: '350px' }}
               className="register"
               type="submit"
               name="submit"
@@ -113,6 +186,7 @@ class RegisterPage extends Component {
           </div>
         </form>
         <center>
+          <span>Already have an account?</span>
           <button
             type="button"
             className="link-button"

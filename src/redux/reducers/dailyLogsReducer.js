@@ -2,7 +2,7 @@
 import moment from 'moment'
 
 const defaultState = {
-    sleep: 0,
+    sleep: '',
     elevated: 0,
     depressed: 0,
     irritability: 0,

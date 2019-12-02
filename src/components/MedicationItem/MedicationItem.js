@@ -31,11 +31,16 @@ class MedicationItem extends Component {
         const medication = this.props.medication;
         return (
             // Displays ListItem for each medication in medicationsReducer
-            <ListItem>
-                <ListItemText primary={medication.name} />
-                <Button color="primary" onClick={() => this.handleEdit(medication.id)}>Edit</Button>
-                <Button color="primary" onClick={this.handleDelete}>Delete</Button>
-            </ListItem>
+            // <ListItem>
+            //     <ListItemText primary={medication.name} />
+            //     <Button color="primary" onClick={() => this.handleEdit(medication.id)}>Edit</Button>
+            //     <Button color="primary" onClick={this.handleDelete}>Delete</Button>
+            // </ListItem>
+            <tr>
+                <td>{medication.name}</td>
+                <td><Button color="primary" onClick={() => this.handleEdit(medication.id)}>Edit</Button></td>
+                <td><Button color="primary" onClick={this.handleDelete}>Delete</Button></td>
+            </tr>
         )
     }
 }

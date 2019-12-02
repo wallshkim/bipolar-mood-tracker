@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import './LoginPage.css';
+
+import Logo from '../../images/logo.png';
+import OrangeLogo from '../../images/compassblackfont.png';
+
 
 class LoginPage extends Component {
   state = {
@@ -31,7 +37,7 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login-container">
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -41,13 +47,45 @@ class LoginPage extends Component {
           </h2>
         )}
         <form className="LoginPage-Form" onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
+          <div className="logo-container">
+          <img src={OrangeLogo} alt="logo" height="300"/>
+          </div>
+          {/* <h1>Login</h1> */}
+
+          <div className="TextField-without-border-radius">
+            <TextField
+              style={{ maxWidth: '350px', minWidth: '350px' }}
+              id="username"
+              placeholder="Username"
+              // label="Username"
+              value={this.state.username}
+              type="text"
+              margin="normal"
+              variant='outlined'
+              onChange={this.handleInputChangeFor('username')}
+            />
+          </div>
+
+          <div className="TextField-without-border-radius">
+            <TextField
+              style={{ maxWidth: '350px', minWidth: '350px' }}
+              id="password"
+              placeholder="Password"
+              // label="Hours"
+              value={this.state.password}
+              type="password"
+              margin="normal"
+              variant='outlined'
+              onChange={this.handleInputChangeFor('password')}
+            />
+          </div>
+
+          {/* <div>
             <label htmlFor="username">
-              Username:
               <input
                 type="text"
                 name="username"
+                placeholder="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
               />
@@ -55,17 +93,19 @@ class LoginPage extends Component {
           </div>
           <div>
             <label htmlFor="password">
-              Password:
               <input
                 type="password"
                 name="password"
+                placeholder="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
               />
             </label>
-          </div>
+          </div> */}
+
           <div>
             <input
+              style={{ maxWidth: '350px', minWidth: '350px' }}
               className="log-in"
               type="submit"
               name="submit"
@@ -74,6 +114,7 @@ class LoginPage extends Component {
           </div>
         </form>
         <center>
+          <span>Don't have an account yet?</span>
           <button
             type="button"
             className="link-button"

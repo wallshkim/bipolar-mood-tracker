@@ -1,9 +1,9 @@
 App {
-      overflow: hidden;
+    overflow: hidden;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: 0px;
 }
 
@@ -12,23 +12,23 @@ body {
     margin: 50px;
 }
 
-.LoginPage-Form {
+/* .LoginPage-Form {
     background-color: #dbd5d5;
     width: 50%;
     height: 250px;
     margin: 10px auto;
     padding: 25px;
     border-radius: 2px;
-}
+} */
 
-.RegisterPage-Form {
+/* .RegisterPage-Form {
     background-color: #dbd5d5;
     width: 50%;
     height: 400px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
-}
+} */
 
 input {
     margin: 5px;
@@ -36,7 +36,9 @@ input {
 }
 
 .log-in, .log-out, .register {
-  background-color: #00acb0;
+  /* font-family: 'Open Sans', sans-serif;
+  font-size: 15px; */
+  background-color: black;
   border-radius: 4px;
   color: #f8f8f8;
   min-height: 50px;
@@ -46,7 +48,7 @@ input {
 }
 
 .log-in:hover, .log-out:hover, .register:hover {
-  background-color: #008183;
+  background-color: black;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
@@ -55,6 +57,7 @@ input {
     color:inherit;
     border:none;
     padding:0;
+    margin-left: 5px;
     font: inherit;
     outline:0;
     border-bottom:1px solid #444; 
@@ -73,15 +76,6 @@ input {
     display: flex;
 }
 
-.DailyLog-InputContainer {
-    display: flex;
-    
-}
-
-.moodContainer {
-    margin: 10px;
-}
-
 .addMedsSelectContainer {
     display: flex;
     justify-content: flex-start;
@@ -89,26 +83,4 @@ input {
 
 .addMedsLabel {
     margin-right: 20px;
-}
-
-.sliderContainer {
-    margin: 20px;
-    width: 80%;
-}
-
-.DailyLogDateButtonContainer {
-    display: flex;
-}
-
-.Charts-Container {
-     padding-left: 0px;
-     padding-right: 10px;
-     padding-top: 10px;
-     padding-bottom: 10px;
-     margin: 10px 0px;
-}
-
-
-.Charts-Seven {
-    padding: 5px;
 }

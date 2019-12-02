@@ -1,0 +1,9 @@
+.register-container {
+    background-color: #ffbd59;
+    text-align: center;
+}
+
+.TextField-without-border-radius fieldset {
+    border-radius: 0;
+    border-color: black;
+}
