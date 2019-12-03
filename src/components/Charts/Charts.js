@@ -94,7 +94,7 @@ class Charts extends Component {
                         }}
                     >
                         <CartesianGrid strokeDasharray="5 5" />
-                        <XAxis scale="point" dataKey="date_display" tick={{ fontSize: 12 }} allowDecimals={false} interval={0}/>
+                        <XAxis  dataKey="date_display" tick={{ fontSize: 12 }} allowDecimals={false} interval={0}/>
                         <YAxis tick={{ fontSize: 12 }} allowDecimals={false} interval={0} width={10}/>
                         <Tooltip />
                         <Legend />
@@ -126,7 +126,7 @@ class Charts extends Component {
                         }}
                     >
                         <CartesianGrid strokeDasharray="5 5" />
-                        <XAxis scale="point" dataKey="date_display" tick={{ fontSize: 12 }} allowDecimals={false} interval={6} />
+                        <XAxis dataKey="date_display" tick={{ fontSize: 12 }} allowDecimals={false} interval={6} />
                         <YAxis tick={{ fontSize: 12 }} allowDecimals={false} interval={0} width={10} />
                         <Tooltip />
                         <Legend />

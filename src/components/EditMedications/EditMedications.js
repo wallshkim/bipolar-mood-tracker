@@ -8,6 +8,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { withRouter } from 'react-router-dom';
+import './EditMedications.css';
+import Paper from '@material-ui/core/Paper';
 
 
 class EditMedications extends Component {
@@ -79,92 +81,96 @@ class EditMedications extends Component {
             <div>
                 {this.props.selectedMedicationReducer.name && (
                     <>
-                        <h1>Edit Medication</h1>
-                        <div className="addMedsSelectContainer">
-                            <p className="addMedsLabel">Name: </p>
-                            <TextField
-                                // id="standard-helperText"
-                                label="Medication Name"
-                                defaultValue={this.props.selectedMedicationReducer.name}
-                                // value={this.state.editedMedication.name}
-                                type="text"
-                                margin="normal"
-                                variant="outlined"
-                                onChange={(event) => this.handleChangeFor('name', event)}
-                            />
-                        </div>
-                        <div className="addMedsSelectContainer">
-                            <p className="addMedsLabel">Dosage: </p>
-                            <TextField
-                                // id="standard-helperText"
-                                // label="0"
-                                defaultValue={this.props.selectedMedicationReducer.dosage}
-                                // value={this.state.editedMedication.dosage}
-                                type="number"
-                                margin="normal"
-                                variant="outlined"
-                                onChange={(event) => this.handleChangeFor('dosage', event)}
-                            />
-                        </div>
-                        <div className="addMedsSelectContainer">
-                            <p className="addMedsLabel">Units: </p>
-                            <TextField
-                                // id="standard-helperText"
-                                // label="Units"
-                                defaultValue={this.props.selectedMedicationReducer.units}
-                                // value={this.state.editedMedication.units}
-                                type="text"
-                                margin="normal"
-                                variant="outlined"
-                                onChange={(event) => this.handleChangeFor('units', event)}
-                            />
-                        </div>
-                        <div className="addMedsSelectContainer">
-                            <p className="addMedsLabel">Frequency: </p>
-                            <FormControl required>
-                                {/* <InputLabel id="frequency">Frequency</InputLabel> */}
-                                <Select
-                                    labelId="frequency"
-                                    id="frequency"
-                                    defaultValue={this.props.selectedMedicationReducer.frequency}
-                                    // value={this.state.editedMedication.frequency}
-                                    onChange={(event) => this.handleChangeFor('frequency', event)}
-                                    autoWidth>
-                                    <MenuItem value="">
-                                        <em>Select</em>
-                                    </MenuItem>
-                                    <MenuItem value='daily'>Daily</MenuItem>
-                                    <MenuItem value='asNeeded'>As Needed</MenuItem>
-                                </Select>
-                                <FormHelperText>Required</FormHelperText>
-                            </FormControl>
-                        </div>
+                        <Paper style={{ margin: "10px", padding: "15px", }}>
 
-                        <div className="addMedsSelectContainer">
-                            <p className="addMedsLabel">Time of Day: </p>
-                            <FormControl required>
-                                {/* <InputLabel id="time">Time of Day</InputLabel> */}
-                                <Select
-                                    labelId="time"
-                                    id="time"
-                                    defaultValue={this.props.selectedMedicationReducer.time}
-                                    // value={this.state.editedMedication.time}
-                                    onChange={(event) => this.handleChangeFor('time', event)}
-                                    autoWidth>
-                                    <MenuItem value="">
-                                        <em>Select</em>
-                                    </MenuItem>
-                                    <MenuItem value='any'>Any</MenuItem>
-                                    <MenuItem value='AM'>AM</MenuItem>
-                                    <MenuItem value='PM'>PM</MenuItem>
-                                </Select>
-                                <FormHelperText>Required</FormHelperText>
-                            </FormControl>
-                        </div>
+                            <h4>Edit Medication</h4>
+                            <div className="editMedsSelectContainer">
+                                <p className="addMedsLabel">Name: </p>
+                                <TextField
+                                    // id="standard-helperText"
+                                    // label="Medication Name"
+                                    defaultValue={this.props.selectedMedicationReducer.name}
+                                    // value={this.state.editedMedication.name}
+                                    type="text"
+                                    margin="normal"
+                                    // variant="outlined"
+                                    onChange={(event) => this.handleChangeFor('name', event)}
+                                />
+                            </div>
+                            <div className="editMedsSelectContainer">
+                                <p className="addMedsLabel">Dosage: </p>
+                                <TextField
+                                    // id="standard-helperText"
+                                    // label="0"
+                                    defaultValue={this.props.selectedMedicationReducer.dosage}
+                                    // value={this.state.editedMedication.dosage}
+                                    type="number"
+                                    margin="normal"
+                                    // variant="outlined"
+                                    onChange={(event) => this.handleChangeFor('dosage', event)}
+                                />
+                            </div>
+                            <div className="editMedsSelectContainer">
+                                <p className="addMedsLabel">Units: </p>
+                                <TextField
+                                    // id="standard-helperText"
+                                    // label="Units"
+                                    defaultValue={this.props.selectedMedicationReducer.units}
+                                    // value={this.state.editedMedication.units}
+                                    type="text"
+                                    margin="normal"
+                                    // variant="outlined"
+                                    onChange={(event) => this.handleChangeFor('units', event)}
+                                />
+                            </div>
+                            <div className="editMedsSelectContainer">
+                                <p className="addMedsLabel">Frequency: </p>
+                                <FormControl required>
+                                    {/* <InputLabel id="frequency">Frequency</InputLabel> */}
+                                    <Select
+                                        style={{ maxWidth: '150px', minWidth: '150px' }}
+                                        labelId="frequency"
+                                        id="frequency"
+                                        defaultValue={this.props.selectedMedicationReducer.frequency}
+                                        // value={this.state.editedMedication.frequency}
+                                        onChange={(event) => this.handleChangeFor('frequency', event)}
+                                        autoWidth>
+                                        <MenuItem value="">
+                                            <em>Select</em>
+                                        </MenuItem>
+                                        <MenuItem value='daily'>Daily</MenuItem>
+                                        <MenuItem value='asNeeded'>As Needed</MenuItem>
+                                    </Select>
+                                    <FormHelperText>Required</FormHelperText>
+                                </FormControl>
+                            </div>
 
-                        <Button variant="contained" color="primary" onClick={this.handleCancel}>Cancel</Button>
-                        <Button variant="contained" color="primary" onClick={this.updateMedication}>Update</Button>
+                            <div className="editMedsSelectContainer">
+                                <p className="addMedsLabel">Time of Day: </p>
+                                <FormControl required>
+                                    {/* <InputLabel id="time">Time of Day</InputLabel> */}
+                                    <Select
+                                        labelId="time"
+                                        style={{ maxWidth: '150px', minWidth: '150px' }}
+                                        id="time"
+                                        defaultValue={this.props.selectedMedicationReducer.time}
+                                        // value={this.state.editedMedication.time}
+                                        onChange={(event) => this.handleChangeFor('time', event)}
+                                        autoWidth>
+                                        <MenuItem value="">
+                                            <em>Select</em>
+                                        </MenuItem>
+                                        <MenuItem value='any'>Any</MenuItem>
+                                        <MenuItem value='AM'>AM</MenuItem>
+                                        <MenuItem value='PM'>PM</MenuItem>
+                                    </Select>
+                                    <FormHelperText>Required</FormHelperText>
+                                </FormControl>
+                            </div>
 
+                            <Button style={{ marginRight: '50px', marginTop: '20px' }} variant="contained" color="primary" onClick={this.handleCancel}>Cancel</Button>
+                            <Button style={{ marginTop: '20px' }} variant="contained" color="primary" onClick={this.updateMedication}>Update</Button>
+                        </Paper>
                         {/* <pre>{JSON.stringify(this.props.selectedMedicationReducer, null, 2)}</pre>
                         <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
                     </>

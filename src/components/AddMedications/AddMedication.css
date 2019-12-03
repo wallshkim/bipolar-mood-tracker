@@ -1,0 +1,10 @@
+.addMedsSelectContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+/* .btn-container {
+    display: flex;
+    justify-content: space-between;
+} */

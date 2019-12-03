@@ -24,6 +24,8 @@ class MedicationItem extends Component {
             type: 'DELETE_MEDICATION', 
             payload: this.props.medication.id 
         })
+
+        this.props.dispatch({ type: 'FETCH_MEDICATIONS' });
     }
 
     render() {
