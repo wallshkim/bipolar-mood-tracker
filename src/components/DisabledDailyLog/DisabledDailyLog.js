@@ -21,17 +21,6 @@ import '../DailyLog/DailyLog.css';
 
 class DisabledDailyLog extends Component {
 
-    // componentDidMount() {
-    //     console.log('mounted log')
-    //     this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
-
-    //     this.props.currentDateReducer &&
-    //         this.props.dispatch({
-    //             type: 'FETCH_DAILY_LOG',
-    //             payload: this.props.currentDateReducer.today.format('L'),
-    //         })
-    // }
-
     render() {
 
         const sliderValues = [
@@ -248,9 +237,9 @@ class DisabledDailyLog extends Component {
                 })}
 
 
-                <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
+                {/* <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
                 <pre>{JSON.stringify(this.props.dailyLogsReducer, null, 2)}</pre>
-                <pre>{JSON.stringify(this.state, null, 2)}</pre>
+                <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
 
             </div>
         );

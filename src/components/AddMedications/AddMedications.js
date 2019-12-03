@@ -154,8 +154,8 @@ class AddMedications extends Component {
                 <Button variant="contained" color="primary" onClick={this.handleCancel}>Cancel</Button>
                 <Button variant="contained" color="primary" onClick={this.addNewMedication}>Add</Button>
 
-                <pre>{JSON.stringify(this.props, null, 2)}</pre>
-                <pre>{JSON.stringify(this.state, null, 2)}</pre>
+                {/* <pre>{JSON.stringify(this.props, null, 2)}</pre>
+                <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
             </div>
         )
     }

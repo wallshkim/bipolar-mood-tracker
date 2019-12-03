@@ -18,9 +18,18 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import './DailyLog.css';
 import DisabledDailyLog from '../DisabledDailyLog/DisabledDailyLog';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 class DailyLog extends Component {
+
+    state = {
+        dialog: false,
+    }
 
     componentDidMount() {
         console.log('mounted log')
@@ -53,17 +62,6 @@ class DailyLog extends Component {
             type: 'FETCH_DAILY_LOG',
             payload: this.props.currentDateReducer.format('L')
         });
-    }
-
-
-    handleSubmit = () => {
-        console.log('in handleSubmit this.props.dailyLogsReducer is: ', this.props.dailyLogsReducer);
-
-        this.props.dispatch({
-            type: 'ADD_DAILY_LOG',
-            payload: { moods: this.props.dailyLogsReducer, medications: this.props.medicationsReducer }
-        })
-
     }
 
     handleMedChange = (id, event) => {
@@ -126,6 +124,30 @@ class DailyLog extends Component {
         })
     }
 
+    handleDialogOpen = () => {
+        this.setState({
+            dialog: true,
+        })
+    }
+
+    handleDialogClose = () => {
+        this.setState({
+            dialog: false,
+        })
+    }
+
+    handleSubmit = () => {
+        console.log('in handleSubmit this.props.dailyLogsReducer is: ', this.props.dailyLogsReducer);
+
+        this.props.dispatch({
+            type: 'ADD_DAILY_LOG',
+            payload: { moods: this.props.dailyLogsReducer, medications: this.props.medicationsReducer }
+        })
+
+        this.setState({
+            dialog: false,
+        })
+    }
 
     render() {
 
@@ -180,9 +202,6 @@ class DailyLog extends Component {
                         </div>
 
                         <div className="dailyInput">
-                            {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
-                        Today's most extreme Elevated mood
-                    </Typography> */}
                             <p className="inputLabel">Today's most extreme Elevated mood: </p>
                             <div className="sliderContainer">
                                 <Slider
@@ -198,9 +217,6 @@ class DailyLog extends Component {
                         </div>
 
                         <div className="dailyInput input-grey-background">
-                            {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
-                        Today's most extreme Depressed mood
-                    </Typography> */}
                             <p className="inputLabel">Today's most extreme Depressed mood: </p>
                             <div className="sliderContainer">
                                 <Slider
@@ -216,9 +232,6 @@ class DailyLog extends Component {
                         </div>
 
                         <div className="dailyInput">
-                            {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
-                        Today's most extreme irritability
-                    </Typography> */}
                             <p className="inputLabel">Today's most extreme irritability: </p>
                             <div className="sliderContainer">
                                 <Slider
@@ -234,9 +247,6 @@ class DailyLog extends Component {
                         </div>
 
                         <div className="dailyInput input-grey-background">
-                            {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
-                        Today's most extreme anxiety
-                    </Typography> */}
                             <p className="inputLabel">Today's most extreme anxiety: </p>
                             <div className="sliderContainer">
                                 <Slider
@@ -253,7 +263,6 @@ class DailyLog extends Component {
                         <div className="dailyInput psychotic-container">
                             <p className="inputLabel margin-right">Psychotic Symptoms: </p>
                             <FormControl required>
-                                {/* <InputLabel id="time">Time of Day</InputLabel> */}
                                 <Select
                                     style={{ maxWidth: '100px', minWidth: '100px' }}
                                     labelId="psychotic"
@@ -268,23 +277,11 @@ class DailyLog extends Component {
                                     <MenuItem value='true'>True</MenuItem>
                                     <MenuItem value='false'>False</MenuItem>
                                 </Select>
-                                {/* <FormHelperText>Required</FormHelperText> */}
                             </FormControl>
-                            {/* <TextField
-                        id="standard-helperText"
-                        // label="True or False"
-                        placeholder="True or False"
-                        value={this.props.dailyLogsReducer.psychotic_symptoms}
-                        type="text"
-                        margin="normal"
-                        variant="outlined"
-                        onChange={(event) => this.handleChangeFor('psychotic_symptoms', event)}
-                    /> */}
                         </div>
                         <div className="dailyInput therapy-container input-grey-background">
                             <p className="inputLabel margin-right">Therapy: </p>
                             <FormControl required>
-                                {/* <InputLabel id="time">Time of Day</InputLabel> */}
                                 <Select
                                     style={{ maxWidth: '100px', minWidth: '100px' }}
                                     labelId="therapy"
@@ -299,22 +296,10 @@ class DailyLog extends Component {
                                     <MenuItem value='true'>True</MenuItem>
                                     <MenuItem value='false'>False</MenuItem>
                                 </Select>
-                                {/* <FormHelperText>Required</FormHelperText> */}
                             </FormControl>
-                            {/* <TextField
-                        id="standard-helperText"
-                        // label="True or False"
-                        placeholder="True or False"
-                        value={this.props.dailyLogsReducer.therapy}
-                        type="text"
-                        margin="normal"
-                        variant="outlined"
-                        onChange={(event) => this.handleChangeFor('therapy', event)}
-                    /> */}
                         </div>
 
                         <div className="dailyInput padding-left">
-                            {/* <p className="inputLabel">Notes: </p> */}
                             <TextField
                                 id="standard-helperText"
                                 label="Notes"
@@ -323,7 +308,6 @@ class DailyLog extends Component {
                                 type="text"
                                 rows="4"
                                 margin="normal"
-                                // variant="filled"
                                 multiline={true}
                                 onChange={(event) => this.handleChangeFor('notes', event)}
                             />
@@ -358,15 +342,37 @@ class DailyLog extends Component {
                                 style={{ maxWidth: '350px', minWidth: '350px' }}
                                 variant="contained"
                                 color="primary"
-                                onClick={this.handleSubmit}>
+                                onClick={this.handleDialogOpen}>
                                 Submit
-                    </Button>
+                            </Button>
                         </div>
-                        {/* <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
-                        <pre>{JSON.stringify(this.props.dailyLogsReducer, null, 2)}</pre> */}
-                        {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
+                        <Dialog
+                            open={this.state.dialog}
+                            onClose={this.handleDialogClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                            // style={{ backgroundColor: '#ffbd59', color: 'white' }}
+                        >
+                            <DialogTitle id="alert-dialog-title" style={{ backgroundColor: '#ffbd59', color: 'white' }}>{"Would you like to finalize today's log?"}</DialogTitle>
+                            {/* <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Would you like to finalize today's log?
+                                </DialogContentText>
+                            </DialogContent> */}
+                            <DialogActions style={{ backgroundColor: 'white' }}>
+                                <Button onClick={this.handleDialogClose} color="primary" >
+                                    No, I want to make changes.
+                                </Button>
+                                <Button onClick={this.handleSubmit} color="primary" autoFocus>
+                                    Yes, submit these values.
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </>
                 }
+                {/* <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
+                        <pre>{JSON.stringify(this.props.dailyLogsReducer, null, 2)}</pre> */}
+                {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
             </div>
         );
     }
