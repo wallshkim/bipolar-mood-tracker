@@ -163,114 +163,114 @@ class DailyLog extends Component {
                 </div>
 
                 {this.props.daysBackReducer > 0 ? <DisabledDailyLog /> :
-                <>
-                <div className="dailyInput hours-slept input-grey-background">
-                    <p className="inputLabel margin-right">Hours Slept Last Night: </p>
-                    <TextField
-                        style={{ maxWidth: '50px', minWidth: '50px' }}
-                        id="sleep"
-                        placeholder="0"
-                        // label="Hours"
-                        value={this.props.dailyLogsReducer.sleep}
-                        type="number"
-                        margin="normal"
-                        variant='standard'
-                        onChange={(event) => this.handleChangeFor('sleep', event)}
-                    />
-                </div>
+                    <>
+                        <div className="dailyInput hours-slept input-grey-background">
+                            <p className="inputLabel margin-right">Hours Slept Last Night: </p>
+                            <TextField
+                                style={{ maxWidth: '50px', minWidth: '50px' }}
+                                id="sleep"
+                                placeholder="0"
+                                // label="Hours"
+                                value={this.props.dailyLogsReducer.sleep}
+                                type="number"
+                                margin="normal"
+                                variant='standard'
+                                onChange={(event) => this.handleChangeFor('sleep', event)}
+                            />
+                        </div>
 
-                <div className="dailyInput">
-                    {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
+                        <div className="dailyInput">
+                            {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
                         Today's most extreme Elevated mood
                     </Typography> */}
-                    <p className="inputLabel">Today's most extreme Elevated mood: </p>
-                    <div className="sliderContainer">
-                        <Slider
-                            onChange={this.handleElevatedChange}
-                            value={this.props.dailyLogsReducer.elevated}
-                            step={1}
-                            min={0}
-                            max={3}
-                            valueLabelDisplay="auto"
-                            marks={sliderValues}
-                        />
-                    </div>
-                </div>
+                            <p className="inputLabel">Today's most extreme Elevated mood: </p>
+                            <div className="sliderContainer">
+                                <Slider
+                                    onChange={this.handleElevatedChange}
+                                    value={this.props.dailyLogsReducer.elevated}
+                                    step={1}
+                                    min={0}
+                                    max={3}
+                                    valueLabelDisplay="auto"
+                                    marks={sliderValues}
+                                />
+                            </div>
+                        </div>
 
-                <div className="dailyInput input-grey-background">
-                    {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
+                        <div className="dailyInput input-grey-background">
+                            {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
                         Today's most extreme Depressed mood
                     </Typography> */}
-                    <p className="inputLabel">Today's most extreme Depressed mood: </p>
-                    <div className="sliderContainer">
-                        <Slider
-                            onChange={this.handleDepressedChange}
-                            value={this.props.dailyLogsReducer.depressed}
-                            step={1}
-                            min={0}
-                            max={3}
-                            valueLabelDisplay="auto"
-                            marks={sliderValues}
-                        />
-                    </div>
-                </div>
+                            <p className="inputLabel">Today's most extreme Depressed mood: </p>
+                            <div className="sliderContainer">
+                                <Slider
+                                    onChange={this.handleDepressedChange}
+                                    value={this.props.dailyLogsReducer.depressed}
+                                    step={1}
+                                    min={0}
+                                    max={3}
+                                    valueLabelDisplay="auto"
+                                    marks={sliderValues}
+                                />
+                            </div>
+                        </div>
 
-                <div className="dailyInput">
-                    {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
+                        <div className="dailyInput">
+                            {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
                         Today's most extreme irritability
                     </Typography> */}
-                    <p className="inputLabel">Today's most extreme irritability: </p>
-                    <div className="sliderContainer">
-                        <Slider
-                            onChange={this.handleIrritabilityChange}
-                            value={this.props.dailyLogsReducer.irritability}
-                            step={1}
-                            min={0}
-                            max={3}
-                            valueLabelDisplay="auto"
-                            marks={sliderValues}
-                        />
-                    </div>
-                </div>
+                            <p className="inputLabel">Today's most extreme irritability: </p>
+                            <div className="sliderContainer">
+                                <Slider
+                                    onChange={this.handleIrritabilityChange}
+                                    value={this.props.dailyLogsReducer.irritability}
+                                    step={1}
+                                    min={0}
+                                    max={3}
+                                    valueLabelDisplay="auto"
+                                    marks={sliderValues}
+                                />
+                            </div>
+                        </div>
 
-                <div className="dailyInput input-grey-background">
-                    {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
+                        <div className="dailyInput input-grey-background">
+                            {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
                         Today's most extreme anxiety
                     </Typography> */}
-                    <p className="inputLabel">Today's most extreme anxiety: </p>
-                    <div className="sliderContainer">
-                        <Slider
-                            onChange={this.handleAnxietyChange}
-                            value={this.props.dailyLogsReducer.anxiety}
-                            step={1}
-                            min={0}
-                            max={3}
-                            valueLabelDisplay="auto"
-                            marks={sliderValues}
-                        />
-                    </div>
-                </div>
-                <div className="dailyInput psychotic-container">
-                    <p className="inputLabel margin-right">Psychotic Symptoms: </p>
-                    <FormControl required>
-                        {/* <InputLabel id="time">Time of Day</InputLabel> */}
-                        <Select
-                            style={{ maxWidth: '100px', minWidth: '100px' }}
-                            labelId="psychotic"
-                            id="psychotic"
-                            value={this.props.dailyLogsReducer.psychotic_symptoms}
-                            onChange={(event) => this.handleChangeFor('psychotic_symptoms', event)}
-                            autoWidth
-                        >
-                            <MenuItem value="">
-                                <em>Select</em>
-                            </MenuItem>
-                            <MenuItem value='true'>True</MenuItem>
-                            <MenuItem value='false'>False</MenuItem>
-                        </Select>
-                        {/* <FormHelperText>Required</FormHelperText> */}
-                    </FormControl>
-                    {/* <TextField
+                            <p className="inputLabel">Today's most extreme anxiety: </p>
+                            <div className="sliderContainer">
+                                <Slider
+                                    onChange={this.handleAnxietyChange}
+                                    value={this.props.dailyLogsReducer.anxiety}
+                                    step={1}
+                                    min={0}
+                                    max={3}
+                                    valueLabelDisplay="auto"
+                                    marks={sliderValues}
+                                />
+                            </div>
+                        </div>
+                        <div className="dailyInput psychotic-container">
+                            <p className="inputLabel margin-right">Psychotic Symptoms: </p>
+                            <FormControl required>
+                                {/* <InputLabel id="time">Time of Day</InputLabel> */}
+                                <Select
+                                    style={{ maxWidth: '100px', minWidth: '100px' }}
+                                    labelId="psychotic"
+                                    id="psychotic"
+                                    value={this.props.dailyLogsReducer.psychotic_symptoms}
+                                    onChange={(event) => this.handleChangeFor('psychotic_symptoms', event)}
+                                    autoWidth
+                                >
+                                    <MenuItem value="">
+                                        <em>Select</em>
+                                    </MenuItem>
+                                    <MenuItem value='true'>True</MenuItem>
+                                    <MenuItem value='false'>False</MenuItem>
+                                </Select>
+                                {/* <FormHelperText>Required</FormHelperText> */}
+                            </FormControl>
+                            {/* <TextField
                         id="standard-helperText"
                         // label="True or False"
                         placeholder="True or False"
@@ -280,28 +280,28 @@ class DailyLog extends Component {
                         variant="outlined"
                         onChange={(event) => this.handleChangeFor('psychotic_symptoms', event)}
                     /> */}
-                </div>
-                <div className="dailyInput therapy-container input-grey-background">
-                    <p className="inputLabel margin-right">Therapy: </p>
-                    <FormControl required>
-                        {/* <InputLabel id="time">Time of Day</InputLabel> */}
-                        <Select
-                            style={{ maxWidth: '100px', minWidth: '100px' }}
-                            labelId="therapy"
-                            id="therapy"
-                            value={this.props.dailyLogsReducer.therapy}
-                            onChange={(event) => this.handleChangeFor('therapy', event)}
-                            autoWidth
-                        >
-                            <MenuItem value="">
-                                <em>Select</em>
-                            </MenuItem>
-                            <MenuItem value='true'>True</MenuItem>
-                            <MenuItem value='false'>False</MenuItem>
-                        </Select>
-                        {/* <FormHelperText>Required</FormHelperText> */}
-                    </FormControl>
-                    {/* <TextField
+                        </div>
+                        <div className="dailyInput therapy-container input-grey-background">
+                            <p className="inputLabel margin-right">Therapy: </p>
+                            <FormControl required>
+                                {/* <InputLabel id="time">Time of Day</InputLabel> */}
+                                <Select
+                                    style={{ maxWidth: '100px', minWidth: '100px' }}
+                                    labelId="therapy"
+                                    id="therapy"
+                                    value={this.props.dailyLogsReducer.therapy}
+                                    onChange={(event) => this.handleChangeFor('therapy', event)}
+                                    autoWidth
+                                >
+                                    <MenuItem value="">
+                                        <em>Select</em>
+                                    </MenuItem>
+                                    <MenuItem value='true'>True</MenuItem>
+                                    <MenuItem value='false'>False</MenuItem>
+                                </Select>
+                                {/* <FormHelperText>Required</FormHelperText> */}
+                            </FormControl>
+                            {/* <TextField
                         id="standard-helperText"
                         // label="True or False"
                         placeholder="True or False"
@@ -311,60 +311,61 @@ class DailyLog extends Component {
                         variant="outlined"
                         onChange={(event) => this.handleChangeFor('therapy', event)}
                     /> */}
-                </div>
-
-                <div className="dailyInput padding-left">
-                    {/* <p className="inputLabel">Notes: </p> */}
-                    <TextField
-                        id="standard-helperText"
-                        label="Notes"
-                        style={{ maxWidth: '350px', minWidth: '350px' }}
-                        value={this.props.dailyLogsReducer.notes}
-                        type="text"
-                        rows="4"
-                        margin="normal"
-                        // variant="filled"
-                        multiline={true}
-                        onChange={(event) => this.handleChangeFor('notes', event)}
-                    />
-                </div>
-
-                {this.props.medicationsReducer.map((medication) => {
-                    return (
-                        console.log('in medicationReducer map, medication is: ', medication.taken),
-
-                        <div className="input-grey-background dailyInput padding-left" key={medication.id}>
-                            <p>{medication.name} {medication.dosage}{medication.units} ({medication.time})</p>
-                            <FormControl component="fieldset">
-                                <RadioGroup className="radioGroup-container" value={String(medication.taken)} aria-label="taken" name="taken" onChange={(event) => this.handleMedChange(medication.id, event)}>
-                                    <FormControlLabel name="taken" value="true" control={
-                                        <Radio style={{
-                                            color: "black",
-                                        }} />
-                                    } label="Yes" />
-                                    <FormControlLabel name="taken" value="false" control={
-                                        <Radio style={{
-                                            color: "black",
-                                        }} />
-                                    } label="No" />
-                                </RadioGroup>
-                            </FormControl>
                         </div>
-                    )
-                })}
 
-                <div className="btn-container">
-                    <Button
-                        style={{ maxWidth: '350px', minWidth: '350px'}}
-                        variant="contained"
-                        color="primary"
-                        onClick={this.handleSubmit}>
-                        Submit
+                        <div className="dailyInput padding-left">
+                            {/* <p className="inputLabel">Notes: </p> */}
+                            <TextField
+                                id="standard-helperText"
+                                label="Notes"
+                                style={{ maxWidth: '350px', minWidth: '350px' }}
+                                value={this.props.dailyLogsReducer.notes}
+                                type="text"
+                                rows="4"
+                                margin="normal"
+                                // variant="filled"
+                                multiline={true}
+                                onChange={(event) => this.handleChangeFor('notes', event)}
+                            />
+                        </div>
+
+                        {this.props.medicationsReducer.map((medication) => {
+                            return (
+                                console.log('in medicationReducer map, medication is: ', medication.taken),
+
+                                <div className="input-grey-background dailyInput padding-left" key={medication.id}>
+                                    <p>{medication.name} {medication.dosage}{medication.units} ({medication.time})</p>
+                                    <FormControl component="fieldset">
+                                        <RadioGroup className="radioGroup-container" value={String(medication.taken)} aria-label="taken" name="taken" onChange={(event) => this.handleMedChange(medication.id, event)}>
+                                            <FormControlLabel name="taken" value="true" control={
+                                                <Radio style={{
+                                                    color: "black",
+                                                }} />
+                                            } label="Yes" />
+                                            <FormControlLabel name="taken" value="false" control={
+                                                <Radio style={{
+                                                    color: "black",
+                                                }} />
+                                            } label="No" />
+                                        </RadioGroup>
+                                    </FormControl>
+                                </div>
+                            )
+                        })}
+
+                        <div className="btn-container">
+                            <Button
+                                style={{ maxWidth: '350px', minWidth: '350px' }}
+                                variant="contained"
+                                color="primary"
+                                onClick={this.handleSubmit}>
+                                Submit
                     </Button>
-                </div>
-                {/* <pre>{JSON.stringify(this.props, null, 2)}</pre>
-                <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-                </>
+                        </div>
+                        {/* <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
+                        <pre>{JSON.stringify(this.props.dailyLogsReducer, null, 2)}</pre> */}
+                        {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
+                    </>
                 }
             </div>
         );

@@ -21,16 +21,16 @@ import '../DailyLog/DailyLog.css';
 
 class DisabledDailyLog extends Component {
 
-    componentDidMount() {
-        console.log('mounted log')
-        this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
+    // componentDidMount() {
+    //     console.log('mounted log')
+    //     this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
 
-        this.props.currentDateReducer &&
-            this.props.dispatch({
-                type: 'FETCH_DAILY_LOG',
-                payload: this.props.currentDateReducer.today.format('L'),
-            })
-    }
+    //     this.props.currentDateReducer &&
+    //         this.props.dispatch({
+    //             type: 'FETCH_DAILY_LOG',
+    //             payload: this.props.currentDateReducer.today.format('L'),
+    //         })
+    // }
 
     render() {
 
@@ -61,7 +61,7 @@ class DisabledDailyLog extends Component {
                     <TextField
                         style={{ maxWidth: '50px', minWidth: '50px' }}
                         id="sleep"
-                        defaultValue={this.props.dailyLogsReducer.sleep}
+                        value={this.props.dailyLogsReducer.sleep}
                         disabled
                         type="number"
                         margin="normal"
@@ -76,7 +76,7 @@ class DisabledDailyLog extends Component {
                     <p className="inputLabel">Today's most extreme Elevated mood: </p>
                     <div className="sliderContainer">
                         <Slider
-                            defaultValue={this.props.dailyLogsReducer.elevated}
+                            value={this.props.dailyLogsReducer.elevated}
                             disabled
                             step={1}
                             min={0}
@@ -94,7 +94,7 @@ class DisabledDailyLog extends Component {
                     <p className="inputLabel">Today's most extreme Depressed mood: </p>
                     <div className="sliderContainer">
                         <Slider
-                            defaultValue={this.props.dailyLogsReducer.depressed}
+                            value={this.props.dailyLogsReducer.depressed}
                             disabled
                             step={1}
                             min={0}
@@ -113,7 +113,7 @@ class DisabledDailyLog extends Component {
                     <div className="sliderContainer">
                         <Slider
                             disabled
-                            defaultValue={this.props.dailyLogsReducer.irritability}
+                            value={this.props.dailyLogsReducer.irritability}
                             step={1}
                             min={0}
                             max={3}
@@ -131,7 +131,7 @@ class DisabledDailyLog extends Component {
                     <div className="sliderContainer">
                         <Slider
                             disabled
-                            defaultValue={this.props.dailyLogsReducer.anxiety}
+                            value={this.props.dailyLogsReducer.anxiety}
                             step={1}
                             min={0}
                             max={3}
@@ -149,7 +149,7 @@ class DisabledDailyLog extends Component {
                             labelId="psychotic"
                             id="psychotic"
                             disabled
-                            defaultValue={this.props.dailyLogsReducer.psychotic_symptoms}
+                            value={this.props.dailyLogsReducer.psychotic_symptoms}
                             autoWidth
                         >
                             <MenuItem value="">
@@ -179,7 +179,7 @@ class DisabledDailyLog extends Component {
                             style={{ maxWidth: '100px', minWidth: '100px' }}
                             labelId="therapy"
                             id="therapy"
-                            defaultValue={this.props.dailyLogsReducer.therapy}
+                            value={this.props.dailyLogsReducer.therapy}
                             disabled
                             autoWidth
                         >
@@ -209,7 +209,7 @@ class DisabledDailyLog extends Component {
                         id="standard-helperText"
                         label="Notes"
                         style={{ maxWidth: '350px', minWidth: '350px' }}
-                        defaultValue={this.props.dailyLogsReducer.notes}
+                        value={this.props.dailyLogsReducer.notes}
                         type="text"
                         rows="4"
                         margin="normal"
@@ -226,7 +226,7 @@ class DisabledDailyLog extends Component {
                         <div className="input-grey-background dailyInput padding-left" key={medication.id}>
                             <p>{medication.name} {medication.dosage}{medication.units} ({medication.time})</p>
                             <FormControl component="fieldset">
-                                <RadioGroup className="radioGroup-container" value={String(medication.taken)} aria-label="taken" name="taken" onChange={(event) => this.handleMedChange(medication.id, event)}>
+                                <RadioGroup className="radioGroup-container" value={String(medication.taken)} aria-label="taken" name="taken">
                                     <FormControlLabel name="taken" value="true" control={
                                         <Radio 
                                             disabled
@@ -248,8 +248,9 @@ class DisabledDailyLog extends Component {
                 })}
 
 
-                {/* <pre>{JSON.stringify(this.props, null, 2)}</pre>
-                <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
+                <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
+                <pre>{JSON.stringify(this.props.dailyLogsReducer, null, 2)}</pre>
+                <pre>{JSON.stringify(this.state, null, 2)}</pre>
 
             </div>
         );
