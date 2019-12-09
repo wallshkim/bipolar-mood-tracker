@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 import AddCircle from '../../images/addcircle.png';
 import AddBlackCircle from '../../images/blackcircleadd.png';
+import './Settings.css';
 
 
 class Settings extends Component {

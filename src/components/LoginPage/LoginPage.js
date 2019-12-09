@@ -55,13 +55,13 @@ class LoginPage extends Component {
         )}
         <form className="LoginPage-Form" onSubmit={this.login}>
           <div className="logo-container">
-            <button
+            {/* <button
               type="button"
               // className="link-button"
               onClick={this.populateFields}
-            >
+            > */}
               <img src={OrangeLogo} alt="logo" height="300" />
-            </button>
+            {/* </button> */}
           </div>
           {/* <h1>Login</h1> */}
 

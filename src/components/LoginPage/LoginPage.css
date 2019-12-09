@@ -1,12 +1,19 @@
+LoginPage {
+    background-color: #ffbd59;
+}
+
 .login-container {
     background-color: #ffbd59;
     text-align: center;
 }
 
-/* .logo-container {
-    display: flex;
-    justify-content: center;
-} */
+button {
+    background-color: #ffbd59;
+}
+
+.logo-container {
+background-color: #ffbd59;
+}
 
 .TextField-without-border-radius fieldset {
     border-radius: 0;

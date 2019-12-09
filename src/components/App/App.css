@@ -13,24 +13,6 @@ body {
     margin: 50px;
 }
 
-/* .LoginPage-Form {
-    background-color: #dbd5d5;
-    width: 50%;
-    height: 250px;
-    margin: 10px auto;
-    padding: 25px;
-    border-radius: 2px;
-} */
-
-/* .RegisterPage-Form {
-    background-color: #dbd5d5;
-    width: 50%;
-    height: 400px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 2px;
-} */
-
 input {
     margin: 5px;
     margin-bottom: 10px;
@@ -66,12 +48,7 @@ input {
     padding-bottom: 200px;
 }
 
-/* Makes list titles and buttons on same line */
-.Settings-titleBtnContainer {
-    display: flex;
-    justify-content: flex-start;
-    align-items: baseline;
-}
+
 
 
 .MedicationList-ListContainer {
