@@ -8,11 +8,11 @@ There are about 2.3 million people in the US who have been diagnosed with Bipola
 - Node.js
 
 ## Screen Shot
-![Settings](./src/images/Settings.png)
+![Settings](./src/images/Settings-small.png)
 
-![DailyLog](./src/images/DailyLog.png)
+![DailyLog](./src/images/DailyLog-small.png)
 
-![Charts](./src/images/BaseCharts.png)
+![Charts](./src/images/BaseCharts-small.png)
 
 ## Getting Started
 - npm install
