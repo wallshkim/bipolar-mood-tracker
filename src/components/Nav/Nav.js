@@ -8,7 +8,7 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav">
     <div>
-    <Link to="/home">
+    <Link to="/dailyLog">
         <h2 className="nav-title">M</h2>
     </Link>
     </div>
@@ -37,10 +37,7 @@ const Nav = (props) => (
           <LogOutButton className="nav-link"/>
         </>
       )}
-      {/* Always show this link since the about page is not protected */}
-      {/* <Link className="nav-link" to="/about">
-        About
-      </Link> */}
+
     </div>
   </div>
 );

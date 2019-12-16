@@ -15,9 +15,7 @@
 }
 
 .dailyInput{
-    /* margin: 5px 0px; */
     padding: 15px 0px;
-    /* padding: 10px; */
 }
 
 .input-grey-background {
@@ -42,7 +40,6 @@
 .sliderContainer {
     width: 350px;
     padding-left: 48px;
-    /* padding-bottom: 15px; */
 }
 
 .inputLabel {
@@ -67,10 +64,6 @@
 .padding-left {
     padding-left: 30px;
 }
-
-/* .orange-background{
-    background-color: #ffedd2;
-} */
 
 .radioGroup-container {
     display: flex;

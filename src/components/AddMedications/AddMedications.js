@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-// import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { withRouter } from 'react-router-dom';
+import { TextField, MenuItem, FormControl, Select, Paper, Button } from '@material-ui/core/';
 import './AddMedication.css';
-import Paper from '@material-ui/core/Paper';
 
-
-
-
+/* Creates and handles the form to add a new medication in the Settings tab */
 class AddMedications extends Component {
-
     componentDidMount() {
         // get current medications for comparison
         this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
     }
-
+    
     state = {
         newMedication: {
             medicationName: '',
@@ -45,7 +35,6 @@ class AddMedications extends Component {
                 time: ''
             }
         });
-
         // route back to settings page
         this.props.history.push(`/settings`);
     }
@@ -85,48 +74,43 @@ class AddMedications extends Component {
             <div>
                 <Paper style={{ margin: "10px", padding: "15px", }}>
                     <h4>New Medication</h4>
+
                     <div className="addMedsSelectContainer">
                         <p className="addMedsLabel">Name: </p>
                         <TextField
-                            // id="standard-helperText"
                             placeholder="Medication Name"
                             defaultValue={this.state.newMedication.medicationName}
                             type="text"
                             margin="normal"
-                            // variant="outlined"
                             onChange={(event) => this.handleChangeFor('medicationName', event)}
                         />
                     </div>
+
                     <div className="addMedsSelectContainer">
                         <p className="addMedsLabel">Dosage: </p>
                         <TextField
-                            // id="standard-helperText"
-                            // label="0"
                             placeholder="0"
                             defaultValue={this.state.newMedication.dosage}
                             type="number"
                             margin="normal"
-                            // variant="outlined"
                             onChange={(event) => this.handleChangeFor('dosage', event)}
                         />
                     </div>
+
                     <div className="addMedsSelectContainer">
                         <p className="addMedsLabel">Units: </p>
                         <TextField
-                            // id="standard-helperText"
-                            // label="Units"
                             placeholder="mg"
                             defaultValue={this.state.newMedication.units}
                             type="text"
                             margin="normal"
-                            // variant="outlined"
                             onChange={(event) => this.handleChangeFor('units', event)}
                         />
                     </div>
+
                     <div className="addMedsSelectContainer">
                         <p className="addMedsLabel">Frequency: </p>
                         <FormControl required>
-                            {/* <InputLabel id="frequency">Frequency</InputLabel> */}
                             <Select
                                 style={{ maxWidth: '150px', minWidth: '150px' }}
                                 labelId="frequency"
@@ -141,14 +125,12 @@ class AddMedications extends Component {
                                 <MenuItem value='daily'>Daily</MenuItem>
                                 <MenuItem value='asNeeded'>As Needed</MenuItem>
                             </Select>
-                            {/* <FormHelperText>Required</FormHelperText> */}
                         </FormControl>
                     </div>
 
                     <div className="addMedsSelectContainer">
                         <p className="addMedsLabel">Time of Day: </p>
                         <FormControl required>
-                            {/* <InputLabel id="time">Time of Day</InputLabel> */}
                             <Select
                                 style={{ maxWidth: '150px', minWidth: '150px' }}
                                 labelId="time"
@@ -164,7 +146,6 @@ class AddMedications extends Component {
                                 <MenuItem value='AM'>AM</MenuItem>
                                 <MenuItem value='PM'>PM</MenuItem>
                             </Select>
-                            {/* <FormHelperText>Required</FormHelperText> */}
                         </FormControl>
                     </div>
 

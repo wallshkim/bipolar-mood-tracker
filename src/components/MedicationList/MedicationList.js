@@ -1,32 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MedicationItem from '../MedicationItem/MedicationItem';
-import List from '@material-ui/core/List';
 
+/* Maps over medications and passes props to MedicationItem component */
 class MedicationList extends Component {
-
     componentDidMount() {
         this.fetchMedications();
     }
 
     fetchMedications = () => {
-        // let userId = this.props.user.id
-        // console.log('In MedicationList, userId is: ', userId);
-        // Fetch medications for this user
-        // this.props.dispatch({ type: 'FETCH_MEDICATIONS', payload: userId })
-        this.props.dispatch({ type: 'FETCH_MEDICATIONS'})
+        this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
     }
 
     render() {
         return (
             <>
-                {/* <List> */}
-                    {this.props.medicationsReducer.map((medication) => {
-                        return (
-                            <MedicationItem key={medication.id} medication={medication} />
-                        )
-                    })}
-                {/* </List> */}
+                {this.props.medicationsReducer.map((medication) => {
+                    return (
+                        <MedicationItem key={medication.id} medication={medication} />
+                    )
+                })}
                 {/* <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre> */}
             </>
         );

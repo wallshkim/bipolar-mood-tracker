@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 
 class MedicationItem extends Component {
@@ -32,12 +30,6 @@ class MedicationItem extends Component {
         // creates var for props passed from MedicationList
         const medication = this.props.medication;
         return (
-            // Displays ListItem for each medication in medicationsReducer
-            // <ListItem>
-            //     <ListItemText primary={medication.name} />
-            //     <Button color="primary" onClick={() => this.handleEdit(medication.id)}>Edit</Button>
-            //     <Button color="primary" onClick={this.handleDelete}>Delete</Button>
-            // </ListItem>
             <tr>
                 <td>{medication.name} ({medication.dosage}{medication.units})</td>
                 <td><Button color="primary" onClick={() => this.handleEdit(medication.id)}>Edit</Button></td>

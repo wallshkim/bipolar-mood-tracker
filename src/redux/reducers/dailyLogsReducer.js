@@ -10,7 +10,7 @@ const defaultState = {
     psychotic_symptoms: false,
     therapy: false,
     notes: '',
-    date: moment().format('L')
+    date: moment().clone().format('L')
 }
 
 /* Hold daily log*/

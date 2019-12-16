@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest, select } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchSevenDays() {
     try {

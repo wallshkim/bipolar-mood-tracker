@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// Handles axios get for moods_per_day and medications_per_day
+// Handles axios get to moods_per_day and medications_per_day
 router.get('/', async (req, res) => {
     console.log('in /dailyLog GET req.query.date is: ', req.query.date);
 

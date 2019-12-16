@@ -1,29 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-// import BackIcon from '../../images/back.png';
-// import ForwardIcon from '../../images/forward.png';
+import { TextField, Button, FormControl, Radio, RadioGroup, FormControlLabel, Slider, MenuItem, Select, Dialog, DialogActions, DialogTitle} from '@material-ui/core/';
 import BigBackIcon from '../../images/back 32px.png';
 import BigForwardIcon from '../../images/forward 32px.png';
-import MenuItem from '@material-ui/core/MenuItem';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-import Select from '@material-ui/core/Select';
 import './DailyLog.css';
 import DisabledDailyLog from '../DisabledDailyLog/DisabledDailyLog';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
 
 class DailyLog extends Component {
 
@@ -38,7 +19,7 @@ class DailyLog extends Component {
         this.props.currentDateReducer &&
             this.props.dispatch({
                 type: 'FETCH_DAILY_LOG',
-                payload: this.props.currentDateReducer.today.format('L'),
+                payload: this.props.currentDateReducer.format('L'),
             })
     }
 
@@ -150,11 +131,11 @@ class DailyLog extends Component {
     }
 
     render() {
-
-        // let dateToShow = this.props.dailyLogsReducer.date ? moment(this.props.dailyLogsReducer.date).format('MMMM Do, YYYY') 
-
-        const format = this.props.currentDateReducer.today.format('L')
-        let newDay = moment(format).subtract(this.props.daysBackReducer, "days").format('MMMM Do, YYYY');
+        const daysOffset = this.props.daysBackReducer;
+        const today = this.props.currentDateReducer;
+        const priorDay = today.clone().subtract(daysOffset, "days").format('MMMM Do, YYYY');
+        // const format = this.props.currentDateReducer.today.format('L')
+        // let newDay = moment(format).subtract(this.props.daysBackReducer, "days").format('MMMM Do, YYYY');
 
         const sliderValues = [
             {
@@ -180,7 +161,7 @@ class DailyLog extends Component {
             <div className="moodContainer">
                 <div className="DailyLogDateButtonContainer">
                     <Button onClick={this.incrementDaysBack}><img src={BigBackIcon} alt="back symbol" /></Button>
-                    <h4 className="currentDate-title">{newDay}</h4>
+                    <h4 className="currentDate-title">{priorDay}</h4>
                     <Button onClick={this.decrementDaysBack}><img src={BigForwardIcon} alt="forward symbol" /></Button>
                 </div>
 
@@ -353,26 +334,21 @@ class DailyLog extends Component {
                             aria-describedby="alert-dialog-description"
                             // style={{ backgroundColor: '#ffbd59', color: 'white' }}
                         >
-                            <DialogTitle id="alert-dialog-title" style={{ backgroundColor: '#ffbd59', color: 'white' }}>{"Would you like to finalize today's log?"}</DialogTitle>
-                            {/* <DialogContent>
-                                <DialogContentText id="alert-dialog-description">
-                                    Would you like to finalize today's log?
-                                </DialogContentText>
-                            </DialogContent> */}
+                            <DialogTitle id="alert-dialog-title" style={{ backgroundColor: 'white', color: 'black' }}>{"Great, your moods will be logged!"}</DialogTitle>
                             <DialogActions style={{ backgroundColor: 'white' }}>
                                 <Button onClick={this.handleDialogClose} color="primary" >
-                                    No, I want to make changes.
+                                    Cancel
                                 </Button>
                                 <Button onClick={this.handleSubmit} color="primary" autoFocus>
-                                    Yes, submit these values.
+                                    Okay
                                 </Button>
                             </DialogActions>
                         </Dialog>
                     </>
                 }
-                {/* <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
-                        <pre>{JSON.stringify(this.props.dailyLogsReducer, null, 2)}</pre> */}
-                {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
+                <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
+                <pre>{JSON.stringify(this.props.dailyLogsReducer, null, 2)}</pre>
+                <pre>{JSON.stringify(this.state, null, 2)}</pre>
             </div>
         );
     }

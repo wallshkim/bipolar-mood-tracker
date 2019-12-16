@@ -1,28 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-// import BackIcon from '../../images/back.png';
-// import ForwardIcon from '../../images/forward.png';
-import BigBackIcon from '../../images/back 32px.png';
-import BigForwardIcon from '../../images/forward 32px.png';
-import MenuItem from '@material-ui/core/MenuItem';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-import Select from '@material-ui/core/Select';
+import { TextField, FormControl, Radio, RadioGroup, FormControlLabel, Slider, MenuItem, Select  } from '@material-ui/core/';
 import '../DailyLog/DailyLog.css';
 
-
+/* Allows users to view previous days entries but not edit them */
 class DisabledDailyLog extends Component {
-
     render() {
-
         const sliderValues = [
             {
                 value: 0,
@@ -77,9 +60,6 @@ class DisabledDailyLog extends Component {
                 </div>
 
                 <div className="dailyInput input-grey-background">
-                    {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
-                        Today's most extreme Depressed mood
-                    </Typography> */}
                     <p className="inputLabel">Today's most extreme Depressed mood: </p>
                     <div className="sliderContainer">
                         <Slider
@@ -95,9 +75,6 @@ class DisabledDailyLog extends Component {
                 </div>
 
                 <div className="dailyInput">
-                    {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
-                        Today's most extreme irritability
-                    </Typography> */}
                     <p className="inputLabel">Today's most extreme irritability: </p>
                     <div className="sliderContainer">
                         <Slider
@@ -113,9 +90,6 @@ class DisabledDailyLog extends Component {
                 </div>
 
                 <div className="dailyInput input-grey-background">
-                    {/* <Typography className="inputLabel" id="discrete-slider-restrict" gutterBottom>
-                        Today's most extreme anxiety
-                    </Typography> */}
                     <p className="inputLabel">Today's most extreme anxiety: </p>
                     <div className="sliderContainer">
                         <Slider
@@ -132,7 +106,6 @@ class DisabledDailyLog extends Component {
                 <div className="dailyInput psychotic-container">
                     <p className="inputLabel margin-right">Psychotic Symptoms: </p>
                     <FormControl required>
-                        {/* <InputLabel id="time">Time of Day</InputLabel> */}
                         <Select
                             style={{ maxWidth: '100px', minWidth: '100px' }}
                             labelId="psychotic"
@@ -147,23 +120,11 @@ class DisabledDailyLog extends Component {
                             <MenuItem value='true'>True</MenuItem>
                             <MenuItem value='false'>False</MenuItem>
                         </Select>
-                        {/* <FormHelperText>Required</FormHelperText> */}
                     </FormControl>
-                    {/* <TextField
-                        id="standard-helperText"
-                        // label="True or False"
-                        placeholder="True or False"
-                        value={this.props.dailyLogsReducer.psychotic_symptoms}
-                        type="text"
-                        margin="normal"
-                        variant="outlined"
-                        onChange={(event) => this.handleChangeFor('psychotic_symptoms', event)}
-                    /> */}
                 </div>
                 <div className="dailyInput therapy-container input-grey-background">
                     <p className="inputLabel margin-right">Therapy: </p>
                     <FormControl required>
-                        {/* <InputLabel id="time">Time of Day</InputLabel> */}
                         <Select
                             style={{ maxWidth: '100px', minWidth: '100px' }}
                             labelId="therapy"
@@ -178,22 +139,10 @@ class DisabledDailyLog extends Component {
                             <MenuItem value='true'>True</MenuItem>
                             <MenuItem value='false'>False</MenuItem>
                         </Select>
-                        {/* <FormHelperText>Required</FormHelperText> */}
                     </FormControl>
-                    {/* <TextField
-                        id="standard-helperText"
-                        // label="True or False"
-                        placeholder="True or False"
-                        value={this.props.dailyLogsReducer.therapy}
-                        type="text"
-                        margin="normal"
-                        variant="outlined"
-                        onChange={(event) => this.handleChangeFor('therapy', event)}
-                    /> */}
                 </div>
 
                 <div className="dailyInput padding-left">
-                    {/* <p className="inputLabel">Notes: </p> */}
                     <TextField
                         id="standard-helperText"
                         label="Notes"
@@ -202,7 +151,6 @@ class DisabledDailyLog extends Component {
                         type="text"
                         rows="4"
                         margin="normal"
-                        // variant="filled"
                         multiline={true}
                         disabled
                     />
@@ -236,11 +184,9 @@ class DisabledDailyLog extends Component {
                     )
                 })}
 
-
                 {/* <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
                 <pre>{JSON.stringify(this.props.dailyLogsReducer, null, 2)}</pre>
                 <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-
             </div>
         );
     }

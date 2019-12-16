@@ -19,8 +19,6 @@ input {
 }
 
 .log-in, .log-out, .register {
-  /* font-family: 'Open Sans', sans-serif;
-  font-size: 15px; */
   background-color: black;
   border-radius: 4px;
   color: #f8f8f8;
@@ -45,11 +43,8 @@ input {
     outline:0;
     text-decoration: underline;
     cursor: pointer;
-    padding-bottom: 200px;
+    padding-bottom: 500px;
 }
-
-
-
 
 .MedicationList-ListContainer {
     display: flex;

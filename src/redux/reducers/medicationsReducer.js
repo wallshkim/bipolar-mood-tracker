@@ -3,6 +3,7 @@ const medicationsReducer = (state = [], action) => {
     // console.log('medications reducer hit');
 
     switch (action.type) {
+        // Holds all current medications
         case 'SET_MEDICATIONS':
             console.log('in SET_MEDICATIONS action.payload is: ', action.payload);
             if (action.payload[0] === undefined) {
@@ -10,6 +11,7 @@ const medicationsReducer = (state = [], action) => {
             } else {
                 return action.payload;
             }
+        // Maps through medications and adds/edits the taken property
         case 'SET_MEDICATIONS_TAKEN':
             return state.map(medication => {
                 if (medication.id === action.payload.medId) {
@@ -21,6 +23,7 @@ const medicationsReducer = (state = [], action) => {
                     return medication;
                 }
             })
+        //
         case 'UPDATE_MEDICATIONS_TAKEN':
             console.log('in medicationsReducer UPDATE, action.payload is: ', action.payload);
             if (action.payload.property === 'sleep') {

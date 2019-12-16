@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { LineChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChart, Area, ComposedChart } from 'recharts';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart } from 'recharts';
+import { FormControlLabel, Checkbox, Paper, Typography }from '@material-ui/core/';
 
-
+/* Renders the mood charts for 7 days and 30 days */
 class Charts extends Component {
-
     state = {
         showIrritability: false,
         showAnxiety: false,
@@ -100,8 +96,6 @@ class Charts extends Component {
                         <Legend />
                         <Line type="monotone" dataKey="elevated" strokeWidth={1.5} stroke="#eb0c05" activeDot={{ r: 8 }} />
                         <Line type="monotone" dataKey="depressed" strokeWidth={1.5} stroke="#2600d1" activeDot={{ r: 8 }} />
-                        {/* <Area type="monotone" dataKey="depressed" fill="#8884d8" stroke="#8884d8" />
-                        <Area type="monotone" dataKey="elevated" fill="#de8e8e" stroke="#de8e8e" /> */}
 
                         {this.state.showIrritability &&
                                 <Line type="monotone" dataKey="irritability" strokeWidth={1.5} stroke="#e8940c" activeDot={{ r: 8 }} />}
@@ -132,8 +126,7 @@ class Charts extends Component {
                         <Legend />
                         <Line type="monotone" dataKey="elevated" strokeWidth={1.5} stroke="#eb0c05" activeDot={{ r: 8 }} dot={false}/>
                         <Line type="monotone" dataKey="depressed" stroke="#2600d1" strokeWidth={1.5} activeDot={{ r: 8 }} dot={false}/>
-                        {/* <Area type="monotone" dataKey="depressed" fill="#8884d8" stroke="#8884d8" />
-                        <Area type="monotone" dataKey="elevated" fill="#de8e8e" stroke="#de8e8e" /> */}
+                        
                         {this.state.showIrritability &&
                                 <Line type="monotone" dataKey="irritability" stroke="#e8940c" strokeWidth={1.5} activeDot={{ r: 8 }} dot={false} />}
 
@@ -150,8 +143,6 @@ class Charts extends Component {
         );
     }
 }
-
-
 
 const mapReduxStateToProps = (reduxState) => {
     return reduxState

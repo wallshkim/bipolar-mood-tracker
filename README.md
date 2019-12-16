@@ -1,74 +1,41 @@
-# Prime Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+# MoodMap
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+## Description
 
-## Download (Don't Clone) This Repository
-
-* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-* Unzip the project and start with the code in that folder.
-* Create a new GitHub project and push this code to the new repository.
+This is a React movie application. A user can see movies that exist in the database. They are also able to see a detailed view for each individual movie, including genres associated with that movie. The user can also edit each movie's information. The user will be taken through 3 views (movie list page, details page, and edit page) and have the option to go back to the home or previous page if desired.
 
 ## Prerequisites
+- Node.js
 
-Before you get started, make sure you have the following software installed on your computer:
+## Screen Shot
+![home](./images/home.png)
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+![details](./images/details.png)
 
-## Create database and table
+![edit](./images/edit.png)
 
-Create a new database called `prime_app` and create a `user` table:
+## Getting Started
+- npm install
+- npm run server
+- npm run client
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+## Usage
+1. User begins on the home page which shows the poster for every movie in the database. From here, a user is able to click the info icon in order to go to the details page to learn more about the movie.
+2. The user will be taken to a new view where they can see the movie title, description, and associated genres, if there are any. The user has the option to navigate back to the movie list page by clicking "Back to List" or to edit the movie details by clicking "Edit."
+3. If the user clicks "Edit", they will be taken to a new view where there are two input fields: (1) Title, (2) Description. The fields will show the current information in the database but the user is able to update one or both of the fields and click "Save" in order to update the database. Once the user clicks "Save", they will be navigated back to the details page to see their updates.
+4. If the user does not wish to edit either of the fields, they may simply click "Cancel" and they will be routed back to the details page without the database updating.
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+## Built With
+- React
+- Redux
+- Redux-Saga
+- Axios
+- JavaScript
+- Node.js
+- Material-UI
 
-## Development Setup Instructions
-
-* Run `npm install`
-* Create a `.env` file at the root of the project and paste this line into the file:
-    ```
-    SERVER_SESSION_SECRET=superDuperSecret
-    ```
-    While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-* Start postgres if not running already by using `brew services start postgresql`
-* Run `npm run server`
-* Run `npm run client`
-* Navigate to `localhost:3000`
-
-## Debugging
-
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
-
-
-## Testing Routes with Postman
-
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum. 
-
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
-
-1. Start the server - `npm run server`
-2. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-    1. `POST /api/user/register` registers a new user, see body to change username/password
-    2. `POST /api/user/login` will login a user, see body to change username/password
-    3. `GET /api/user` will get user information, by default it's not very much
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
+## Acknowledgement
+Thank you to Prime Digital Academy for equipping me with the knowledge and tools to create this application.
 
 
 ## Production Build

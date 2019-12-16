@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MedicationList from '../MedicationList/MedicationList';
-// import AddIcon from '@material-ui/icons/Add';
-// import Fab from '@material-ui/core/Fab';
-import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
-import AddCircle from '../../images/addcircle.png';
+import MedicationList from '../MedicationList/MedicationList';
+import Button from '@material-ui/core/Button';
 import AddBlackCircle from '../../images/blackcircleadd.png';
 import './Settings.css';
 
-
+/* Renders resources and current medications */
 class Settings extends Component {
 
     addMedication = () => {
@@ -18,17 +15,9 @@ class Settings extends Component {
         this.props.history.push(`/medications/add`)
     }
 
-    addContact = () => {
-        console.log('add contact clicked!');
-        // route to AddMedication Component
-    }
-
     render() {
         return (
             <div>
-
-                {/* <div className="Settings-titleBtnContainer"> */}
-                {/* <div> */}
                 <table className="table">
                     <thead>
                         <tr>
@@ -61,17 +50,6 @@ class Settings extends Component {
                         </tr>
                     </tbody>
                 </table>
-                {/* <Button color="primary" onClick={this.addMedication}>+</Button> */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* // <div className="MedicationList-ListContainer">
-                    // <MedicationList />
-                // </div> */}
-                {/* <div className="Settings-titleBtnContainer">
-                    <h2>Wellness Team</h2>
-                    <button onClick={this.addContact}>+</button>
-                </div> */}
-
                 {/* <pre>{JSON.stringify(this.props, null, 2)}</pre> */}
             </div>
         );

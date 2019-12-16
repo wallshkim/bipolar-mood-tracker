@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-// import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import { TextField, MenuItem, FormControl, Select, Paper, Button, FormHelperText } from '@material-ui/core/';
 import { withRouter } from 'react-router-dom';
 import './EditMedications.css';
-import Paper from '@material-ui/core/Paper';
 
-
+/* Creates the Edit Medications Form */
 class EditMedications extends Component {
-
     componentDidMount() {
         // get current medications for comparison
         this.props.dispatch({ type: 'FETCH_MEDICATIONS' })
@@ -62,8 +54,8 @@ class EditMedications extends Component {
         this.props.history.push(`/settings`);
     }
 
-    // Dispatch action UPDATE MOVIE to run editMovieSaga that updates server
-    // Routes back to home
+    // Dispatch action UPDATE MEDICATION
+    // Routes back to settings
     updateMedication = () => {
         console.log('UPDATE_MEDICATION saveEdit dispatch payload: ', this.state.editedMedication);
         this.props.dispatch({
@@ -87,52 +79,38 @@ class EditMedications extends Component {
                             <div className="editMedsSelectContainer">
                                 <p className="addMedsLabel">Name: </p>
                                 <TextField
-                                    // id="standard-helperText"
-                                    // label="Medication Name"
                                     defaultValue={this.props.selectedMedicationReducer.name}
-                                    // value={this.state.editedMedication.name}
                                     type="text"
                                     margin="normal"
-                                    // variant="outlined"
                                     onChange={(event) => this.handleChangeFor('name', event)}
                                 />
                             </div>
                             <div className="editMedsSelectContainer">
                                 <p className="addMedsLabel">Dosage: </p>
                                 <TextField
-                                    // id="standard-helperText"
-                                    // label="0"
                                     defaultValue={this.props.selectedMedicationReducer.dosage}
-                                    // value={this.state.editedMedication.dosage}
                                     type="number"
                                     margin="normal"
-                                    // variant="outlined"
                                     onChange={(event) => this.handleChangeFor('dosage', event)}
                                 />
                             </div>
                             <div className="editMedsSelectContainer">
                                 <p className="addMedsLabel">Units: </p>
                                 <TextField
-                                    // id="standard-helperText"
-                                    // label="Units"
                                     defaultValue={this.props.selectedMedicationReducer.units}
-                                    // value={this.state.editedMedication.units}
                                     type="text"
                                     margin="normal"
-                                    // variant="outlined"
                                     onChange={(event) => this.handleChangeFor('units', event)}
                                 />
                             </div>
                             <div className="editMedsSelectContainer">
                                 <p className="addMedsLabel">Frequency: </p>
                                 <FormControl required>
-                                    {/* <InputLabel id="frequency">Frequency</InputLabel> */}
                                     <Select
                                         style={{ maxWidth: '150px', minWidth: '150px' }}
                                         labelId="frequency"
                                         id="frequency"
                                         defaultValue={this.props.selectedMedicationReducer.frequency}
-                                        // value={this.state.editedMedication.frequency}
                                         onChange={(event) => this.handleChangeFor('frequency', event)}
                                         autoWidth>
                                         <MenuItem value="">
@@ -148,13 +126,11 @@ class EditMedications extends Component {
                             <div className="editMedsSelectContainer">
                                 <p className="addMedsLabel">Time of Day: </p>
                                 <FormControl required>
-                                    {/* <InputLabel id="time">Time of Day</InputLabel> */}
                                     <Select
                                         labelId="time"
                                         style={{ maxWidth: '150px', minWidth: '150px' }}
                                         id="time"
                                         defaultValue={this.props.selectedMedicationReducer.time}
-                                        // value={this.state.editedMedication.time}
                                         onChange={(event) => this.handleChangeFor('time', event)}
                                         autoWidth>
                                         <MenuItem value="">

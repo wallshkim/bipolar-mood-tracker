@@ -1,4 +1,4 @@
-
+/* Holds medication info for item in medication list that a user clicks to edit or delete */
 const selectedMedicationReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_SELECTED_MEDICATION':
@@ -9,6 +9,5 @@ const selectedMedicationReducer = (state = {}, action) => {
             return state;
     }
 }
-
 
 export default selectedMedicationReducer;

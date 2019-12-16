@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { put, takeLatest, select } from 'redux-saga/effects';
-import moment from 'moment';
 
-
-/* saga fires on ADD_DAILY_LOG actions*/
 function* addDailyLog(action) {
     try {
         console.log('in addDailyLog, action.payload is: ', action.payload);
@@ -38,7 +35,6 @@ function* changeDailyLog(action) {
     console.log('in changeDailyLog, action.payload is: ', action.payload);
     // Get today's date from currentDateReducer to use below
     let today = yield select(reduxState => reduxState.currentDateReducer);
-    // console.log('in changeDailyLog today is: ', today);
 
     try {
         /* Update the daysBackReducer */
@@ -50,15 +46,17 @@ function* changeDailyLog(action) {
         }
         // Get the updated daysBackReducer value
         let dayOffset = yield select(reduxState => reduxState.daysBackReducer);
-        // 
-        const format = today.today.format('L')
-        let newDay = moment(format).subtract(dayOffset, "days").format('L');
 
-        console.log('in changeDailyLog, today.today is: ', today.today);
-        console.log('in changeDailyLog, newDay is: ', newDay);
+        // const todayFormate = today.clone().format('L')
+        let priorDay = today.clone().subtract(dayOffset, "days").format('L');
+        // const format = today.today.format('L')
+        // let newDay = moment(format).subtract(dayOffset, "days").format('L');
+
+        console.log('in changeDailyLog, today is: ', today);
+        console.log('in changeDailyLog, prior day is: ', priorDay);
         yield put({
             type: 'FETCH_DAILY_LOG',
-            payload: newDay
+            payload: priorDay
         })
     } catch (error) {
         console.log('fetchDailyLog post request failed', error);
@@ -70,7 +68,6 @@ function* dailyLogSaga() {
     yield takeLatest('ADD_DAILY_LOG', addDailyLog);
     yield takeLatest('FETCH_DAILY_LOG', fetchDailyLog);
     yield takeLatest('CHANGE_DAILY_LOG', changeDailyLog);
-    // yield takeLatest('SET_DATE', setDate);
 }
 
 export default dailyLogSaga;
