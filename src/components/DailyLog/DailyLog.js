@@ -134,8 +134,6 @@ class DailyLog extends Component {
         const daysOffset = this.props.daysBackReducer;
         const today = this.props.currentDateReducer;
         const priorDay = today.clone().subtract(daysOffset, "days").format('MMMM Do, YYYY');
-        // const format = this.props.currentDateReducer.today.format('L')
-        // let newDay = moment(format).subtract(this.props.daysBackReducer, "days").format('MMMM Do, YYYY');
 
         const sliderValues = [
             {
@@ -346,9 +344,9 @@ class DailyLog extends Component {
                         </Dialog>
                     </>
                 }
-                <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
+                {/* <pre>{JSON.stringify(this.props.medicationsReducer, null, 2)}</pre>
                 <pre>{JSON.stringify(this.props.dailyLogsReducer, null, 2)}</pre>
-                <pre>{JSON.stringify(this.state, null, 2)}</pre>
+                <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
             </div>
         );
     }

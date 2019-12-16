@@ -23,19 +23,18 @@ const medicationsReducer = (state = [], action) => {
                     return medication;
                 }
             })
-        //
-        case 'UPDATE_MEDICATIONS_TAKEN':
-            console.log('in medicationsReducer UPDATE, action.payload is: ', action.payload);
-            if (action.payload.property === 'sleep') {
-                return { ...state, sleep: action.payload.value };
-            }
-            else if (action.payload.property === 'elevated') {
-                return { ...state, elevated: action.payload.value };
-            } else {
-                return state;
-            }
-        default:
-            return state;
+        // case 'UPDATE_MEDICATIONS_TAKEN':
+        //     console.log('in medicationsReducer UPDATE, action.payload is: ', action.payload);
+        //     if (action.payload.property === 'sleep') {
+        //         return { ...state, sleep: action.payload.value };
+        //     }
+        //     else if (action.payload.property === 'elevated') {
+        //         return { ...state, elevated: action.payload.value };
+        //     } else {
+        //         return state;
+        //     }
+        // default:
+        //     return state;
     }
 }
 

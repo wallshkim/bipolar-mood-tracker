@@ -46,11 +46,8 @@ function* changeDailyLog(action) {
         }
         // Get the updated daysBackReducer value
         let dayOffset = yield select(reduxState => reduxState.daysBackReducer);
-
-        // const todayFormate = today.clone().format('L')
+        // Clone moment object and subtract dayOffset
         let priorDay = today.clone().subtract(dayOffset, "days").format('L');
-        // const format = today.today.format('L')
-        // let newDay = moment(format).subtract(dayOffset, "days").format('L');
 
         console.log('in changeDailyLog, today is: ', today);
         console.log('in changeDailyLog, prior day is: ', priorDay);
