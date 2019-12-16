@@ -8,7 +8,7 @@ There are about 2.3 million people in the US who have been diagnosed with Bipola
 - Node.js
 
 ## Demo
-![MoodMap Demo](./src/images/demo.gif)
+![MoodMap Demo](./src/images/Demo.gif)
 
 ## Screen Shot
 ![Settings](./src/images/Settings-small.png)
